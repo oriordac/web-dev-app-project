@@ -1,26 +1,26 @@
 {
-    "name": "web-dev-app-project",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-      "start": "node server/index.js",
-      "dev": "nodemon server/index.js"
-    },
-    "dependencies": {
-      "express": "4.17.1"
-    },
-    "devDependencies": {
-      "nodemon": "^2.0.2"
-    },
-    "repository": {
-      "type": "git",
-      "url": "git+https://github.com/oriordac/web-dev-app-project.git"
-    },
-    "author": "",
-    "license": "ISC",
-    "bugs": {
-      "url": "https://github.com/oriordac/web-dev-app-project/issues"
-    },
-    "homepage": "https://github.com/oriordac/web-dev-app-project#readme"
-  }
+  "name": "web-dev-app-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "nodemon server/index.js"
+  },
+  "dependencies": {
+    "express": "4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oriordac/web-dev-app-project.git"
+  },
+  "author": "Conor O'Riordan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oriordac/web-dev-app-project/issues"
+  },
+  "homepage": "https://github.com/oriordac/web-dev-app-project#readme"
+}
