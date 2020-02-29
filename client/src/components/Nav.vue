@@ -1,18 +1,18 @@
 <template>
-  <nav class="navbar" role="navigation" aria-label="main navigation">
+<nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
         <a class="navbar-item" href="https://bulma.io">
         <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
         </a>
 
-        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" :class="{'is-active':isOpen}" @click="isOpen =! isOpen">
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
         </a>
     </div>
 
-    <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-menu" :class="{'is-active':isOpen}">
         <div class="navbar-start">
         
         <router-link to="/" class="navbar-item">Home</router-link>
@@ -43,24 +43,24 @@
         </div>
 
         <div class="navbar-end">
-        <div class="navbar-item">
-            <div class="buttons">
-            <a class="button is-primary">
-                <strong>Sign up</strong>
-            </a>
-            <a class="button is-light">
-                Log in
-            </a>
+            <div class="navbar-item">
+                <div class="buttons">
+                    <a class="button is-primary">
+                        <strong>Sign up</strong>
+                    </a>
+                    <router-link to="/login" class="button is-light">Log in</router-link>
+                </div>
             </div>
         </div>
-        </div>
     </div>
-    </nav>
+</nav>
 </template>
 
 <script>
 export default {
-
+    data: () => ({
+        isOpen: false
+    })
 }
 </script>
 

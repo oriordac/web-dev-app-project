@@ -1,128 +1,96 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>My custom Bulma website</title>
-    <link rel="stylesheet" href="https://unpkg.com/bulmaswatch/superhero/bulmaswatch.min.css">
+    <link rel="stylesheet" href="css/mystyles.css">
+    <title>Bewegen</title>
   </head>
-  <body class="has-navbar-fixed-bottom">
-    <nav class="navbar is-fixed-bottom">
+  <body>
+    <nav class="navbar" role="navigation" aria-label="main navigation" id="nav">
       <div class="navbar-brand">
-        <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
+        <a class="navbar-item" href="https://bulma.io">
+          <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+        </a>
+    
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" :class="{'is-active': isOpen}" @click="isOpen != isOpen">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
       </div>
-      <div id="navbarExampleTransparentExample" class="navbar-menu">
+    
+      <div class="navbar-menu" :class="{'is-active': isOpen}">
         <div class="navbar-start">
-          <div class="navbar-item">
-            <p class="control">
-              <a class="button is-large">
-                <span class="icon is-large">
-                  <i class="fas fa-utensils"></i>
-                </span>
+          <a class="navbar-item">
+            Home
+          </a>
+    
+          <a class="navbar-item">
+            Documentation
+          </a>
+    
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+              More
+            </a>
+    
+            <div class="navbar-dropdown">
+              <a class="navbar-item">
+                About
               </a>
-            </p>
-          </div>
-          <div class="navbar-item">
-            <p class="control">
-              <a class="button is-large">
-                <span class="icon">
-                  <i class="fas fa-walking"></i>
-                </span>
+              <a class="navbar-item">
+                Jobs
               </a>
-            </p>
+              <a class="navbar-item">
+                Contact
+              </a>
+              <hr class="navbar-divider">
+              <a class="navbar-item">
+                Report an issue
+              </a>
+            </div>
           </div>
         </div>
     
         <div class="navbar-end">
           <div class="navbar-item">
-            <p class="control">
-              <a class="button is-large">
-                <span class="icon is-large">
-                  <i class="fas fa-tint"></i>
-                </span>
+            <div class="buttons">
+              <a class="button is-primary">
+                <strong>Sign up</strong>
               </a>
-            </p>
-          </div>
-          <div class="navbar-item">
-            <p class="control">
-              <a class="button is-large">
-                <span class="icon">
-                  <i class="fas fa-dumbbell"></i>
-                </span>
+              <a class="button is-light">
+                Log in
               </a>
-            </p>
+            </div>
           </div>
         </div>
       </div>
     </nav>
-
-    <div class="hero is-primary">
+    <section class="hero is-info is-large is-bold">
       <div class="hero-body">
-        <div class="container has-text-centered">
-          <h1 class="title">Gewegen</h1>
-          <h2 class="subtitle">Welcome | Wlkommen</h2>
-        </div>
-      </div>
-    </div>
-    <section class="section">
-      <div class="columns">
-        <div class="column">
-          <div class="card">
-            <div class="card-image">
-                <figure class="image is-square">
-                    <img src="images/utensils.png">
-                </figure>
-            </div>
-            <div class="card-content has-text-centered">
-                <h1 class="title">Calorie Tracker</h1>
-            </div>
-          </div>
-        </div>
-        <div class="column">
-          <div class="card">
-            <div class="card-image">
-                <figure class="image is-square">
-                    <img src="images/exercise.png">
-                </figure>
-            </div>
-            <div class="card-content has-text-centered">
-                <h1 class="title">Running Tracker</h1>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="columns">
-        <div class="column">
-          <div class="card">
-            <div class="card-image">
-                <figure class="image is-square">
-                    <img src="images/water.png">
-                </figure>
-            </div>
-            <div class="card-content has-text-centered">
-                <h1 class="title">Liquid Intake</h1>
-            </div>
-          </div>
-        </div>
-        <div class="column">
-          <div class="card">
-            <div class="card-image">
-                <figure class="image is-square">
-                    <img src="images/weight.png">
-                </figure>
-            </div>
-            <div class="card-content has-text-centered">
-                <h1 class="title">Exercise Calendar</h1>
-            </div>
-          </div>
+        <div class="container">
+          <h1 class="title">
+            Large title
+          </h1>
+          <h2 class="subtitle">
+            Large subtitle
+          </h2>
         </div>
       </div>
     </section>
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+  <script>
+    var app = new Vue({
+    el: '#app',
+    data: {
+      isOpen: false
+    }
+    })
+  </script>
+
   </body>
 </html>
