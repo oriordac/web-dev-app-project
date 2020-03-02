@@ -1,8 +1,8 @@
 <template>
-  <div class="login">
-    <section class="hero is-info is-bold is-fullheight">
+  <div class="signup">
+      <section class="hero is-info is-bold is-fullheight">
         <div class="hero-body" style="display: inline-block;">
-            <div class="title has-text-centered">Log-In</div>
+            <div class="title has-text-centered">Sign-Up</div>
             <div class="container level-item">
                 <div class="box">
                       
@@ -28,35 +28,46 @@
                         </div>
                     </div>
                       
-                    <div class="field is-grouped">
-                    <div class="control">
-                        <button class="button is-info">Submit</button>
-                    </div>
-                    <div class="control">
-                        <button class="button is-link is-light">Cancel</button>
-                    </div>
-                    </div>
+                      <div class="field">
+                        <label class="label">Email</label>
+                        <div class="control has-icons-left">
+                          <input class="input" type="email" placeholder="Email input">
+                          <span class="icon is-small is-left">
+                            <i class="fas fa-envelope"></i>
+                          </span>
+                        </div>
+                        <p class="help is-dark">Enter an email</p>
+                      </div>
+                      
+                      <div class="field is-grouped">
+                        <div class="control">
+                          <button class="button is-info">Submit</button>
+                        </div>
+                        <div class="control">
+                          <button class="button is-link is-light">Cancel</button>
+                        </div>
+                      </div>
 
-                    <hr>
+                      <hr>
 
-                    <div class="field">
+                      <div class="field">
                         <div class="control has-icon-left">
-                            <button class="button is-link">
+                          <button class="button is-link">
                             <span class="icon is-small is-left">
-                                <i class="fab fa-facebook-square"></i>
+                              <i class="fab fa-facebook-square"></i>
                             </span>
                             <span>
-                                Sign-up with Facebook
+                              Sign-up with Facebook
                             </span>
-                            </button>
+                          </button>
                         </div>
-                    </div>
+                      </div>
 
                     </div>
                 </div>
             </div>
     </section>
-  </div> <!--root tag-->
+  </div>
 </template>
 
 <script>
