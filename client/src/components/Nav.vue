@@ -34,9 +34,9 @@
             <router-link to="/liquid" class="navbar-item">
                 Hydration Tracker
             </router-link>
-            <a class="navbar-item">
+            <router-link to="/calorie" class="navbar-item">
                 Calorie Tracker
-            </a>
+            </router-link>
             <a class="navbar-item">
                 Scale
             </a>

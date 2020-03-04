@@ -5,6 +5,7 @@ import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import Signup from '../views/Signup.vue'
 import Liquid from '../views/Liquid.vue'
+import Calorie from '../views/Calorie.vue'
 
 Vue.use(VueRouter)
 
@@ -13,6 +14,7 @@ const routes = [
   {path: '/login', name: 'Login', component: Login},
   {path: '/signup', name: 'Signup', component: Signup},
   {path: '/liquid', name: 'Liquid', component: Liquid},
+  {path: '/calorie', name: 'Calorie', component: Calorie},
   {
     path: '/about',
     name: 'About',
