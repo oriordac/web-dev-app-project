@@ -25,10 +25,11 @@
             </a>
 
             <div class="navbar-dropdown">
-            <a class="navbar-item">
+                
+            <router-link to="/profile" class='navbar-item'>
                 Profile
-            </a>
-            
+            </router-link>      
+
             <hr class="navbar-divider">
 
             <router-link to="/liquid" class="navbar-item">

@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import Signup from '../views/Signup.vue'
+import Profile from '../views/Profile.vue'
 import Liquid from '../views/Liquid.vue'
 import Calorie from '../views/Calorie.vue'
 
@@ -13,6 +14,7 @@ const routes = [
   {path: '/', name: 'Home', component: Home},
   {path: '/login', name: 'Login', component: Login},
   {path: '/signup', name: 'Signup', component: Signup},
+  {path: '/profile', name: 'Profile', component: Profile},
   {path: '/liquid', name: 'Liquid', component: Liquid},
   {path: '/calorie', name: 'Calorie', component: Calorie},
   {
