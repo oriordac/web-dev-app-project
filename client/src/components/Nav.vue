@@ -38,18 +38,15 @@
             <router-link to="/calorie" class="navbar-item">
                 Calorie Tracker
             </router-link>
-            <a class="navbar-item">
-                Scale
-            </a>
 
             <hr class="navbar-divider">
 
             <a class="navbar-item">
                 Cardio
             </a>
-            <a class="navbar-item">
+            <router-link to="/routine" class="navbar-item">
                 Strength Routines
-            </a>
+            </router-link>
             </div>
         </div>
         </div>

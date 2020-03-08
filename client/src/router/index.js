@@ -7,6 +7,7 @@ import Signup from '../views/Signup.vue'
 import Profile from '../views/Profile.vue'
 import Liquid from '../views/Liquid.vue'
 import Calorie from '../views/Calorie.vue'
+import Routine from '../views/Routine.vue'
 
 Vue.use(VueRouter)
 
@@ -17,6 +18,7 @@ const routes = [
   {path: '/profile', name: 'Profile', component: Profile},
   {path: '/liquid', name: 'Liquid', component: Liquid},
   {path: '/calorie', name: 'Calorie', component: Calorie},
+  {path: '/routine', name: 'Rountine', component: Routine},
   {
     path: '/about',
     name: 'About',

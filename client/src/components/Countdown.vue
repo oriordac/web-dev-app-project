@@ -1,34 +1,34 @@
 <template>
     <section id="Countdown">
-        <div class=" box has-text-centered">
-        
-            <h2 class="title is-6">{{title}}</h2>
+        <div class=" box has-text-centered has-background-info">
             
-            <div>
+            <div class="title is-2">
                 <span id="minutes">{{ minutes }}</span>
                 <span id="middle">:</span>
                 <span id="seconds">{{ seconds }}</span>
             </div>
 
-            <div class="buttons">
-                <!--Start Timer -->
-                <button class="button is-dark" v-if="!timer" @click="startTimer">
-                    <span class="icon">
-                        <i class="far fa-play-circle"></i>
-                    </span>
-                </button>
-                <!--Pause Timer -->
-                <button class="button is-dark" v-if="timer" @click="stopTimer">
-                    <span class="icon">
-                        <i class="far fa-pause-circle"></i>
-                    </span>
-                </button>
-                <!--Restart Timer -->
-                <button class="button is-dark" v-if="resetButton" @click="resetTimer">
-                    <span class="icon">
-                        <i class="fas fa-undo"></i>
-                    </span>
-                </button>
+            <div class="level">
+                <div class="level-item buttons has-text-centered">
+                    <!--Start Timer -->
+                    <button class="button is-dark" v-if="!timer" @click="startTimer">
+                        <span class="icon">
+                            <i class="far fa-play-circle"></i>
+                        </span>
+                    </button>
+                    <!--Pause Timer -->
+                    <button class="button is-dark" v-if="timer" @click="stopTimer">
+                        <span class="icon">
+                            <i class="far fa-pause-circle"></i>
+                        </span>
+                    </button>
+                    <!--Restart Timer -->
+                    <button class="button is-dark" v-if="resetButton" @click="resetTimer">
+                        <span class="icon">
+                            <i class="fas fa-undo"></i>
+                        </span>
+                    </button>
+                </div>
             </div>
         
         </div>
@@ -39,7 +39,7 @@
 export default {
     data: () => ({
         timer: null,
-        totalTime: (25 * 60),
+        totalTime: (60),
         resetButton: false,
         title: "Let the countdown begin!!"
     }),
@@ -47,22 +47,19 @@ export default {
         startTimer: function() {
             this.timer = setInterval(() => this.countdown(), 1000);
             this.resetButton = true;
-            this.title = "Greatness is within sight!!"
         },
 
         stopTimer: function() {
             clearInterval(this.timer);
             this.timer = null;
             this.resetButton = true;
-            this.title = "Never quit, keep going!!"
         },
 
         resetTimer: function() {
-            this.totalTime = (25 * 60);
+            this.totalTime = (60);
             clearInterval(this.timer);
             this.timer = null;
             this.resetButton = false;
-            this.title = "Let the countdown begin!!"
         },
 
         padTime: function(time) {
