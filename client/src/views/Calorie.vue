@@ -38,13 +38,13 @@
                 </div>
 
                 <div class="field">
-                    <label class="label">Protien</label>
+                    <label class="label">Protein</label>
                     <div class="control has-icons-left has-icons-right">
-                        <input class="input" type="numver" name="protien" placeholder="0" v-model.number="newProtein">
+                        <input class="input" type="numver" name="protein" placeholder="0" v-model.number="newProtein">
                         <span class="icon is-small is-left">
                             <i class="fas fa-drumstick-bite"></i>
                         </span>
-                        <p class="help is-dark">Enter the protien content in grams</p>
+                        <p class="help is-dark">Enter the protein content in grams</p>
                     </div>
                 </div>
 
@@ -55,7 +55,7 @@
                         <span class="icon is-small is-left">
                             <i class="fas fa-bread-slice"></i>
                         </span>
-                        <p class="help is-dark">Enter the protien content in grams</p>
+                        <p class="help is-dark">Enter the carbs content in grams</p>
                     </div>
                 </div>
 
@@ -94,7 +94,7 @@
                     </div>
                     <div class="level-item has-text-centered">
                         <div>
-                        <p class="heading">Protien</p>
+                        <p class="heading">Protein</p>
                         <p class="title">{{proteinCount}}</p>
                         </div>
                     </div>
@@ -119,16 +119,16 @@
                 <tr>
                     <th>Name of Food</th>
                     <th>Calories</th>
-                    <th>Protien</th>
+                    <th>Protein</th>
                     <th>Carbs</th>
                     <th>Fat</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="x in todos" :key="x">
+                <tr r v-for="x in todos" :key="x.name">
                     <td>{{x.name}}</td>
                     <td>{{x.calorie}}</td>
-                    <td>{{x.protien}}</td>
+                    <td>{{x.protein}}</td>
                     <td>{{x.carbs}}</td>
                     <td>{{x.fat}}</td>
                 </tr>
@@ -142,8 +142,14 @@
 </template>
 
 <script>
+
+import { todos, add, addcalorie, addprotein, addcarbs, addfat } from "../models/Calories";
+
 export default {
+    
     data:() => ({
+        todos,
+
         calorieCount: 0,
         proteinCount: 0,
         carbsCount: 0,
@@ -154,42 +160,15 @@ export default {
         newProtein: 0,
         newCarbs: 0,
         newFat: 0,
-
-        todos: [
-            {
-                name: "Sample",
-                calorie: 0,
-                protien: 0,
-                carbs: 0,
-                fat: 0
-            }
-        ]
     }),
     methods: {
-        add() {
-            this.todos.push(
-              { 
-                name: this.newFoodName, 
-                calorie: this.newCalorie, 
-                protien: this.newProtein, 
-                carbs: this.newCarbs,
-                fat: this.newFat 
-              }
-            )
-        },
-        addcalorie() {
-            this.calorieCount += this.newCalorie
-        },
-        addprotein() {
-            this.proteinCount += this.newProtein
-        },
-        addcarbs() {
-            this.carbsCount += this.newCarbs
-        },
-        addfat() {
-            this.fatCount += this.newFat
-        }
+        add,
+        addcalorie,
+        addprotein,
+        addcarbs,
+        addfat
     }
+    
 }
 </script>
 
