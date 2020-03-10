@@ -1,49 +1,83 @@
 <template>
-<div class="routine">
-    <section class="hero is-info is-bold">
-    <div class="hero-body">
+  <div class="routine">
+      <section class="hero is-info is-bold">
+      <div class="hero-body">
         <div class="container">
-            <h1 class="title">
+          <h1 class="title">
             <span class="icon">
                 <i class="fas fa-dumbbell"></i>
             </span>
             Excerise Routine
-            </h1>
+            <button class="button is-danger" @click="isAdmin = !isAdmin">Toggle between Admin and User</button>
+          </h1>
         </div>
-    </div>
+      </div>
     </section>
     <section class="section">
-        <table class="table is-bordered is-fullwidth">
-            <thead>
-                <tr>
-                    <th>Routine</th>
-                    <th colspan="4">Excerise</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="(x, i) in todos" :key="x.ID">
-                    <td>
-                        <button class="delete" @click="remove(i)" v-if="isAdmin"></button>
-                        {{x.title}}
-                    </td>
-                    <td>{{x.excer1}}</td>
-                    <td>{{x.excer2}}</td>
-                    <td>{{x.excer3}}</td>
-                    <td class="button is-fullwidth" @click="isLog = !isLog">Start</td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
-    <section class="section">
-        <div class="notification">
-            <p class="content">
-                Are you an admin? You can add excercises to this list
-            </p>
-            <button class="button is-link" @click="isOpen = !isOpen">New Routine</button>
+        <div class="columns is-multiline">
+            <!--Admin card seperate from the v-for to generate the cards due to have an unique @click button-->
+            <div class="column is-one-quarter">
+                <div class="card-image">
+                <div class="card">
+                    <figure class="image is-square">
+                    <img src="../assets/plussign.png" alt="image">
+                    </figure>
+                </div>
+                <header class="card-header">
+                    <p class="card-header-title">
+                    New Routine
+                    </p>
+                    <a class="card-header-icon" aria-label="more options" @click="adminCard = !adminCard">
+                    <span class="icon">
+                        <i class="fas fa-angle-down" aria-hidden="true"></i>
+                    </span>
+                    </a>
+                </header>
+                <div class="card-content" v-if="adminCard">
+                    <ul>
+                        <li>Only Admins may add new routines</li>
+                        <li><button class="button is-info is-small" @click="isForm = !isForm" v-if="isAdmin">Start</button></li>
+                    </ul>
+                </div>
+                </div>
+            </div>
+            <!--Use v-for to generate all the routine cards-->
+            <div class="column is-one-quarter" v-for="(card,i) in cards" :key="card.title">
+                <div class="card-image">
+                <div class="card">
+                    <figure class="image is-square">
+                    <img :src="card.photo" alt="image">
+                    </figure>
+                </div>
+                <header class="card-header">
+                    <p class="card-header-title">
+                    {{card.title}}
+                    </p>
+                    <a href="#" class="card-header-icon" aria-label="more options" @click="remove(i)" v-if="isAdmin">
+                    <span class="icon">
+                        <i class="delete" aria-hidden="true"></i>
+                    </span>
+                    </a>
+                    <a class="card-header-icon" aria-label="more options" @click="card.isOpen = !card.isOpen">
+                    <span class="icon">
+                        <i class="fas fa-angle-down" aria-hidden="true"></i>
+                    </span>
+                    </a>
+                </header>
+                <div class="card-content" v-if="card.isOpen">
+                    <ul>
+                        <li v-for="exercise in card.exercises" :key="exercise">{{exercise}}</li>
+                        <li><button class="button is-info is-small" @click="isLog = !isLog">Start</button></li>
+                    </ul>
+                </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
-    <div class="modal" :class="{'is-active': isOpen}">
+    <!--Modal for the adminCard only. Form to push new routine card-->
+    <div class="modal" :class="{'is-active': isForm}">
     <div class="modal-background"></div>
     <div class="modal-content">
         <div class="box">
@@ -54,6 +88,14 @@
                 <input class="input" type="text" placeholder="Title" v-model="newTitle">
             </div>
             <p class="help">Enter Rountine Title</p>
+            </div>
+
+            <div class="field">
+            <label class="label">Photo URL</label>
+            <div class="control">
+                <input class="input" type="text" v-model="newPhoto">
+            </div>
+            <p class="help">Enter the web address of an img/png file</p>
             </div>
 
             <div class="field">
@@ -91,88 +133,94 @@
 
         </div>
     </div>
-    <button class="modal-close is-large" aria-label="close" @click="isOpen = !isOpen"></button>
+    <button class="modal-close is-large" aria-label="close" @click="isForm = !isForm"></button>
     </div>
 
+    <!-- Modal to get to timer. This is for all cards besides the admin/add card-->
     <div class="modal" :class="{'is-active': isLog}">
-    <div class="modal-background"></div>
-    <div class="modal-content">
-        <Workout></Workout>
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <Workout></Workout>
+        </div>
+        <button class="modal-close is-large" aria-label="close" @click="isLog = !isLog"></button>
     </div>
-    <button class="modal-close is-large" aria-label="close" @click="isLog = !isLog"></button>
-    </div>
+  </div>
 
-</div>
 </template>
 
 <script>
 import Workout from "@/components/Workout.vue";
+
 export default {
     data: () => ({
-        isOpen: false,
-        isLog: false,
-        isAdmin: true,
-        todos: [
+        cards: [
             {
-                ID: 0,
                 title: "Back",
-                excer1: "Rows",
-                excer2: "Angel Rows",
-                excer3: "Dumbbell Row"
+                photo: "http://cs.newpaltz.edu/~oriordac1/assets/back.jpg",
+                isOpen: false,
+                exercises: [ "Row", "Angle Row", "Dumbbell Row" ]
             },
             {
-                ID: 1,
                 title: "Biceps",
-                excer1: "Dumbbell Curls",
-                excer2: "Hammer Curls",
+                photo: "http://cs.newpaltz.edu/~oriordac1/assets/bicep.jpg",
+                isOpen: false,
+                exercises: [ "Dumbbell Bicep Curl", "Hammer Curl" ]
             },
             {
-                ID: 2,
                 title: "Chest",
-                excer1: "Barbbell Bench Press",
-                excer2: "Incline Bench Press",
+                photo: "http://cs.newpaltz.edu/~oriordac1/assets/chest.jpg",
+                isOpen: false,
+                exercises: [ "Barbell Bench Press", "Incline Bench Press" ]
             },
             {
-                ID: 3,
-                title: "Shoulder",
-                excer1: "Barvell Shoulder Press",
-                excer2: "Dumbbell Shoulder Press",
+                title: "Shoulders",
+                photo:"http://cs.newpaltz.edu/~oriordac1/assets/shoulder.jpg",
+                isOpen: false,
+                exercises: [ "Barbell Shoulder Press", "Dumbbell Shoulder Press" ]
             },
             {
-                ID: 4,
                 title: "Triceps",
-                excer1: "Dumbbell Kickbacks",
-                excer2: "Dumbbell Tricep Press",
+                photo: "http://cs.newpaltz.edu/~oriordac1/assets/tricep.jpg",
+                isOpen: false,
+                exercises: [ "Dumbbell Kickbacks", "Seated Tricep Press" ]
             },
             {
-                ID: 5,
                 title: "Legs",
-                excer1: "Deadlift",
-                excer2: "Squat",
-                excer3: "Leg Curls"
-            }
+                photo: "http://cs.newpaltz.edu/~oriordac1/assets/legs.jpg",
+                isOpen: false,
+                exercises: [ "Deadlift", "Squat", "Leg Curl" ]
+            },
         ],
+        //for adminCard and access to admin features
+        adminCard: false,
+        isAdmin: true,
+        //booleans to access modals on this page
+        isLog: false,
+        isForm: false,
+        //v-model elements for admin form to add routines
         newTitle: "",
+        newPhoto: "",
         newExcer1: "",
         newExcer2: "",
         newExcer3: ""
     }),
     methods: {
         remove(i){
-          this.todos.splice(i, 1);
+          this.cards.splice(i, 1);
         },
         add() {
-          this.todos.push(
+          this.cards.push(
               { 
                 title: this.newTitle,
-                excer1: this.newExcer1,
-                excer2: this.newExcer2,
-                excer3: this.excer3
+                photo: this.newPhoto,
+                isOpen: false,
+                exercises: [this.newExcer1, this.newExcer2, this.newExcer3]
               }
             )
         },
         clear() {
             this.newTitle = "",
+            this.newPhoto = "",
             this.newExcer1 = "",
             this.newExcer2 = "",
             this.newExcer3 = ""

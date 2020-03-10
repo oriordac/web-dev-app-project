@@ -20,8 +20,13 @@
         </div>
         </div>
     </nav>
-    <h2 class="subtitle is-5 has-text-centered">Remember to Rest</h2>
+    <h2 class="subtitle is-5 has-text-centered">Use the timer to keep track of your breaks</h2>
     <Countdown></Countdown>
+    <div class="notification has-text-centered">
+        Finished? Submit results to your profile
+        <br>
+        <button class="button is-success">Submit</button>
+    </div>
     </div>
 </template>
 
