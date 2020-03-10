@@ -20,12 +20,9 @@
                   <h1 class="title">Welcome | Wilkommen</h1>
                   <p>
                       Consider becoming a member of Gewegen - a fitness app with emphasis on local hiking trails.
-                      Standard features include a calorie and water-intake tracker, a workout calander with accompanying
-                      at-home exercise routines, and a calander to keep track of your progess.
+                      Standard features include a calorie and water-intake tracker, workout routines, 
+                      and a weather tracker to ensure pleasant hikes in the mountains.
                   </p>
-                  <span class="icon">
-                    <i class="fas fa-tint"></i>
-                  </span>
                   <a class="button is-info" href="#">Learn More</a>
               </div>
               <div class="notification content">
@@ -43,11 +40,11 @@
             <div class="card">
                 <div class="card-image">
                     <figure class="image is-3by2">
-                        <img :src="Photos[0].PhotoImage">
+                        <img :src="image">
                     </figure>
                 </div>
                 <div class="card-content">
-                    <h1 class="title">{{ Photos[0].LocationName }}</h1>
+                    <h1 class="title">{{ text }}</h1>
                 </div>
             </div>
             <div v-for="photo in Photos" :key="photo.PhotoID" style="display: inline-block;">
@@ -69,7 +66,13 @@ import { Photos, updatePhoto, updateText } from "../models/Photos";
 
 export default {
   data: () => ({
-    Photos
-  })
+    Photos,
+    image: Photos[0].PhotoImage,
+    text: Photos[0].LocationName
+  }),
+  methods: {
+    updatePhoto,
+    updateText
+  }
 }
 </script>
