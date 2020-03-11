@@ -29,7 +29,7 @@
                             <p class="subtitle is-6">@meditations</p>
                         </div>
                         <div class="media-right">
-                            <span class="button icon" @click="isOpenProfile = !isOpenProfile">
+                            <span class="button icon" @click="profileModal()">
                                 <i class="fas fa-cog"></i>
                             </span>
                         </div>
@@ -102,7 +102,7 @@
                             
                             <div class="field is-grouped">
                                 <div class="control">
-                                <button class="button is-info" @click="updateProfile">Submit</button>
+                                <button class="button is-info" @click="updateProfile();profileModal()">Submit</button>
                                 </div>
                             </div>
 
@@ -110,7 +110,7 @@
                         </div> <!--End of container-->
 
                     </div> <!--End of Modal Content-->
-                    <button class="modal-close is-large" aria-label="close" @click="isOpenProfile =! isOpenProfile"></button>
+                    <button class="modal-close is-large" aria-label="close" @click="profileModal()"></button>
                 </div>
 
             <!--Second Column with Current Stats and Goals-->
@@ -129,7 +129,7 @@
                         </div>
                     </div>
                     <footer class="card-footer">
-                        <a href="#" class="card-footer-item button" @click="isOpenGoal =! isOpenGoal">Edit</a>
+                        <a class="card-footer-item button" @click="goalModal()">Edit</a>
                     </footer>
                 </div>
 
@@ -180,7 +180,7 @@
                             
                             <div class="field is-grouped">
                                 <div class="control">
-                                <button class="button is-info" @click="updateGoals">Submit</button>
+                                <button class="button is-info" @click="updateGoals();goalModal()">Submit</button>
                                 </div>
                             </div>
 
@@ -188,7 +188,7 @@
                         </div> <!--End of container-->
 
                     </div> <!--End of Modal Content-->
-                    <button class="modal-close is-large" aria-label="close" @click="isOpenGoal =! isOpenGoal"></button>
+                    <button class="modal-close is-large" aria-label="close" @click="goalModal()"></button>
                 </div>
 
                 <br> <!--adds space between elements-->
@@ -283,6 +283,12 @@ export default {
             this.age = this.newage,
             this.height = this.newheight,
             this.weight = this.newweight
+        },
+        goalModal () {
+            this.isOpenGoal = !this.isOpenGoal;
+        },
+        profileModal () {
+            this.isOpenProfile = !this.isOpenProfile;
         }
     },
     computed: {

@@ -36,7 +36,7 @@
                 <div class="card-content" v-if="adminCard">
                     <ul>
                         <li>Only Admins may add new routines</li>
-                        <li><button class="button is-info is-small" @click="isForm = !isForm" v-if="isAdmin">Start</button></li>
+                        <li><button class="button is-info is-small" @click="adminModal()" v-if="isAdmin">Start</button></li>
                     </ul>
                 </div>
                 </div>
@@ -67,7 +67,7 @@
                 <div class="card-content" v-if="card.isOpen">
                     <ul>
                         <li v-for="exercise in card.exercises" :key="exercise">{{exercise}}</li>
-                        <li><button class="button is-info is-small" @click="isLog = !isLog">Start</button></li>
+                        <li><button class="button is-info is-small" @click="logModal()">Start</button></li>
                     </ul>
                 </div>
                 </div>
@@ -124,7 +124,7 @@
 
             <div class="field is-grouped">
                 <div class="control">
-                    <button class="button is-info" @click="add">Submit</button>
+                    <button class="button is-info" @click="add();adminModal()">Submit</button>
                 </div>
                 <div class="control">
                     <button class="button is-link is-light" @click="clear">Cancel</button>
@@ -133,7 +133,7 @@
 
         </div>
     </div>
-    <button class="modal-close is-large" aria-label="close" @click="isForm = !isForm"></button>
+    <button class="modal-close is-large" aria-label="close" @click="adminModal"></button>
     </div>
 
     <!-- Modal to get to timer. This is for all cards besides the admin/add card-->
@@ -142,7 +142,7 @@
         <div class="modal-content">
             <Workout></Workout>
         </div>
-        <button class="modal-close is-large" aria-label="close" @click="isLog = !isLog"></button>
+        <button class="modal-close is-large" aria-label="close" @click="logModal"></button>
     </div>
   </div>
 
@@ -224,6 +224,12 @@ export default {
             this.newExcer1 = "",
             this.newExcer2 = "",
             this.newExcer3 = ""
+        },
+        adminModal () {
+            this.isForm = !this.isForm
+        },
+        logModal () {
+            this.isLog = !this.isLog
         }
     },
     components: {
