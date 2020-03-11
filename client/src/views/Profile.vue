@@ -19,19 +19,14 @@
                 <div class="card">
                 <div class="card-image">
                     <figure class="image is-4by3">
-                    <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+                    <img :src="image" alt="Placeholder image">
                     </figure>
                 </div>
                 <div class="card-content">
                     <div class="media">
-                        <div class="media-left">
-                            <figure class="image is-48x48">
-                            <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-                            </figure>
-                        </div>
                         <div class="media-content">
-                            <p class="title is-4">John Doe</p>
-                            <p class="subtitle is-6">@username</p>
+                            <p class="title is-4">Marcus Aurelius</p>
+                            <p class="subtitle is-6">@meditations</p>
                         </div>
                         <div class="media-right">
                             <span class="button icon" @click="isOpenProfile = !isOpenProfile">
@@ -47,9 +42,9 @@
                 </div>
 
                 <footer class="card-footer">
-                    <p class="card-footer-item">{{ age }}</p>
-                    <p class="card-footer-item">{{ height }}</p>
-                    <p class="card-footer-item">{{ weight }}</p>
+                    <p class="card-footer-item">{{ age }} years</p>
+                    <p class="card-footer-item">{{ height }} cm</p>
+                    <p class="card-footer-item">{{ weight }} lbs</p>
                 </footer>
                 </div>
             </div>
@@ -129,7 +124,7 @@
                     <div class="card-content">
                         <div class="content">
                             <p>Focus: {{ focus }}</p>
-                            <p>Weight: {{ goalweight }}</p>    
+                            <p>Weight: {{ goalweight }} lbs</p>    
                             <p>Avg Steps: {{ goalsteps }}</p>
                         </div>
                     </div>
@@ -200,7 +195,7 @@
 
                 <div class="box has-text-centered">
                     <h1 class="title">Weight Change</h1>
-                    <p> {{ weightdif }} </p>
+                    <p> {{ weightdif }} lbs from your goal!</p>
                 </div>
 
             </div> <!--Column for main columns-->
@@ -211,6 +206,7 @@
                     Excercise Log
                     </p>
                 </header>
+                <div class="table-container">
                 <div class="card-content">
                     <table class="table is-bordered is-striped is-hoverable is-fullwidth">
                     <thead>
@@ -241,6 +237,7 @@
                         <a href="#" class="card-footer-item button">Add New Excercise</a>
                 </footer>
                 </div>
+                </div>
                 
             </div> <!--Column for main columns-->
         </div> <!--Columns for main columns-->
@@ -251,13 +248,14 @@
 <script>
 export default {
     data: () => ({
+        image: "https://external-preview.redd.it/BQ9ia45GPitMXmDRYj-I4MkAySsaQ8y3pmNdyT0xp6s.jpg?auto=webp&s=a038bba7257999e84e8fd1d2a848d44f3f3b71af",
         //use for modal
         isOpenProfile: false,
         isOpenGoal: false,
         //current statistics
         description: "History enthusiast interested in hiking as a training regime to emulate the marches of Roman legionnaires",
         age: 23,
-        height: 6.00,
+        height: 180,
         weight: 200,
         sex: "Male",
         //Use Modal form to change stats with v-modal
@@ -289,7 +287,7 @@ export default {
     },
     computed: {
         weightdif () {
-            return this.weight - this.goalweight
+            return Math.abs(this.weight - this.goalweight)
         }
     }
 }

@@ -1,6 +1,6 @@
 <template>
     <section id="Countdown">
-        <div class=" box has-text-centered has-background-info">
+        <div class="box has-text-centered has-background-info">
             
             <div class="title is-2">
                 <span id="minutes">{{ minutes }}</span>

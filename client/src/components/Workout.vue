@@ -1,6 +1,6 @@
 <template>
     <div class="workout notification">
-    <h1 class="title has-text-centered">Excercise Log</h1>
+    <h1 class="title has-text-centered">Exercise Log</h1>
     <nav class="level">
         <div class="level-item has-text-centered">
         <div class="field is-horizontal">
@@ -25,7 +25,8 @@
     <div class="notification has-text-centered">
         Finished? Submit results to your profile
         <br>
-        <button class="button is-success">Submit</button>
+        <button class="button is-success" @click="isSubmited = !isSubmited">Submit</button>
+        <p v-if="isSubmited">Thank you for your submission! See your results under your profile</p>
     </div>
     </div>
 </template>
@@ -33,6 +34,9 @@
 <script>
 import Countdown from "@/components/Countdown.vue";
 export default {
+    data: () => ({
+        isSubmited: false
+    }),
     components: {
         Countdown
     }
