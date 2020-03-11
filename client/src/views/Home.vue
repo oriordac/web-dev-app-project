@@ -19,11 +19,11 @@
               <div class="notification content">
                   <h1 class="title">Welcome | Wilkommen</h1>
                   <p>
-                      Consider becoming a member of Gewegen - a fitness app with emphasis on local hiking trails.
+                      Consider becoming a member of <em>Gewegen</em> - a fitness app with emphasis on local hiking trails.
                       Standard features include a calorie and water-intake tracker, workout routines, 
                       and a weather tracker to ensure pleasant hikes in the mountains.
                   </p>
-                  <a class="button is-info" href="#">Learn More</a>
+                  <a href="/about" class="button is-info">Learn More</a>
               </div>
               <div class="notification content">
                   <h1 class="title">Wanderwege and Wanderlust</h1>
@@ -32,7 +32,7 @@
                       natural parks, there are a plethora of choices - both well-known and unkown. Read reviews and
                       suggestions from fellow members in your local area or when travelling in a new region.
                   </p>
-                  <a href="#" class="button is-warning">Search Region</a>
+                  <a href="/profile" class="button is-warning">Explore Community</a>
               </div>
           </div>
           <!--Photos-->

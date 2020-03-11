@@ -8,6 +8,16 @@ export const Photos = [
         PhotoID: 1,
         PhotoImage: "http://cs.newpaltz.edu/~oriordac1/assets/minnewaska.jpg",
         LocationName: "Minnewaska State Park Preserve"
+    },
+    {
+        PhotoID: 2,
+        PhotoImage: "http://cs.newpaltz.edu/~oriordac1/assets/adirondack.jpg",
+        LocationName: "Adirondack Trail"
+    },
+    {
+        PhotoID: 3,
+        PhotoImage: "http://cs.newpaltz.edu/~oriordac1/assets/appalachian.jpg",
+        LocationName: "Appalachian Trail"
     }
 ];
 
