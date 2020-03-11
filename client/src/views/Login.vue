@@ -4,12 +4,12 @@
         <div class="hero-body" style="display: inline-block;">
             <div class="title has-text-centered">Log-In</div>
             <div class="container level-item">
-                <div class="box">
-                      
+                <form class="box" @submit.prevent="login">
+                      <p class="has-text-centered">{{ error }}</p>
                       <div class="field">
                         <label class="label">Username</label>
                         <div class="control has-icons-left has-icons-right">
-                          <input class="input" type="text" placeholder="Text input">
+                          <input class="input" type="text" placeholder="Text input" v-model="username">
                           <span class="icon is-small is-left">
                             <i class="fas fa-user"></i>
                           </span>
@@ -20,7 +20,7 @@
                       <div class="field">
                         <label class="label">Password</label>
                         <div class="control has-icons-left has-icons-right">
-                            <input class="input" type="password" placeholder="Password" name="Password">
+                            <input class="input" type="password" placeholder="Password" name="Password" v-model="password">
                             <span class="icon is-small is-left">
                                 <i class="fas fa-lock"></i>
                             </span>
@@ -52,7 +52,7 @@
                         </div>
                     </div>
 
-                    </div>
+                    </form>
                 </div>
             </div>
     </section>
@@ -60,8 +60,23 @@
 </template>
 
 <script>
+import { Login } from "../models/Users";
 export default {
-
+  data: () => ({
+    username: "",
+    password: "",
+    error: ""
+  }),
+  methods: {
+    login() {
+      try {
+        Login(this.username, this.password);
+        this.$router.push("/profile");
+      } catch (error) {
+        this.error = error;
+      }
+    }
+  }
 }
 </script>
 
