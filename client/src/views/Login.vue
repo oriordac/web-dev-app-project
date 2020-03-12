@@ -33,7 +33,7 @@
                         <button class="button is-info">Submit</button>
                     </div>
                     <div class="control">
-                        <button class="button is-link is-light">Cancel</button>
+                        <button class="button is-link is-light" @click="clear">Clear</button>
                     </div>
                     </div>
 
@@ -75,6 +75,10 @@ export default {
       } catch (error) {
         this.error = error;
       }
+    },
+    clear () {
+      this.username = "";
+      this.password = "";
     }
   }
 }

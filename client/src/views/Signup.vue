@@ -9,7 +9,7 @@
                       <div class="field">
                         <label class="label">Username</label>
                         <div class="control has-icons-left has-icons-right">
-                          <input class="input" type="text" placeholder="Text input">
+                          <input class="input" type="text" v-model="username">
                           <span class="icon is-small is-left">
                             <i class="fas fa-user"></i>
                           </span>
@@ -20,7 +20,7 @@
                       <div class="field">
                         <label class="label">Password</label>
                         <div class="control has-icons-left has-icons-right">
-                            <input class="input" type="password" placeholder="Password" name="Password">
+                            <input class="input" type="password" v-model="password">
                             <span class="icon is-small is-left">
                                 <i class="fas fa-lock"></i>
                             </span>
@@ -31,7 +31,7 @@
                       <div class="field">
                         <label class="label">Email</label>
                         <div class="control has-icons-left">
-                          <input class="input" type="email" placeholder="Email input">
+                          <input class="input" type="email" v-model="email">
                           <span class="icon is-small is-left">
                             <i class="fas fa-envelope"></i>
                           </span>
@@ -44,7 +44,7 @@
                           <button class="button is-info">Submit</button>
                         </div>
                         <div class="control">
-                          <button class="button is-link is-light">Cancel</button>
+                          <button class="button is-link is-light" @click="clear">Clear</button>
                         </div>
                       </div>
 
@@ -72,7 +72,18 @@
 
 <script>
 export default {
-
+  data: () => ({
+    username: "",
+    email: "",
+    password: ""
+  }),
+  methods: {
+    clear () {
+      this.username = "";
+      this.email = "",
+      this.password = "";
+    }
+  }
 }
 </script>
 
