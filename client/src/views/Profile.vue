@@ -234,7 +234,9 @@
                     </table>
                 </div>
                 <footer class="card-footer">
-                        <a href="#" class="card-footer-item button">Add New Excercise</a>
+                        <router-link to="/routine" class="card-footer-item button">
+                            Add New Excercise
+                        </router-link>
                 </footer>
                 </div>
                 </div>
