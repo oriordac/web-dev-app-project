@@ -4,7 +4,7 @@
       <div class="hero-body">
         <div class="container">
           <h1 class="title">
-            Gewegen
+            Bewegen
           </h1>
           <h2 class="subtitle">
             A fitness app with a focus on <em>wandern</em>
@@ -19,7 +19,7 @@
               <div class="notification content">
                   <h1 class="title">Welcome | Wilkommen</h1>
                   <p>
-                      Consider becoming a member of <em>Gewegen</em> - a fitness app with emphasis on local hiking trails.
+                      Consider becoming a member of <em>Bewegen</em> - a fitness app with emphasis on local hiking trails.
                       Standard features include a calorie and water-intake tracker, workout routines, 
                       and a weather tracker to ensure pleasant hikes in the mountains.
                   </p>

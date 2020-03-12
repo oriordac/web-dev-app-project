@@ -20,7 +20,7 @@
           <div class="notification">
             <h1 class="title">Mission Statement</h1>
             <p class="content">
-              <em>Gewegen</em> is the German verb for "to move." Our mission at <em>Gewegen</em> is to inspire our user to 
+              <em>Bewegen</em> is the German verb for "to move." Our mission at <em>Bewegen</em> is to inspire our user to 
               exercise in the most German way possible - hiking! According to DW, a German newspaper, "Hiking, or <em>Wandern</em> in German, 
               is the most popular outdoor activity in the country, with 68 percent of Germans every year hitting an extensive 
               200,000-kilometer (125,000-mile) trail network. In all, Germans hike 370 million times per year."
@@ -108,7 +108,7 @@ export default {
       {
         ID: 4,
         icon: "fas fa-cloud-sun",
-        title: "Local Weather Reports"
+        title: "Local Weather Reports (Coming Soon)"
       },
     ]
   })
