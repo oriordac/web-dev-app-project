@@ -49,69 +49,7 @@
                 </div>
             </div>
 
-            <!--MODAL to change personal data with a form-->
-                <div class="modal" :class="{'is-active':isOpenProfile}">
-                    <div class="modal-background"></div>
-                    <div class="modal-content">
-
-                        <div class="container">
-                        <div class="box">
-                            <h1 class="title">Update Profile</h1>
-
-                            <div class="field">
-                                <label class="label">Description</label>
-                                <div class="control">
-                                    <textarea class="textarea is-info" placeholder="Info textarea" v-model="newdescription"></textarea>
-                                </div>
-                            </div>
-
-                            <div class="field">
-                                <label class="label">Age</label>
-                                <div class="control">
-                                    <input class="input" type="number" v-model="newage">
-                                </div>
-                            </div>
-
-                            <div class="field">
-                                <label class="label">Height</label>
-                                <div class="control">
-                                    <input class="input" type="number" v-model="newheight">
-                                </div>
-                            </div>
-
-                            <div class="field">
-                                <label class="label">Weight</label>
-                                <div class="control">
-                                    <input class="input" type="number" v-model="newweight">
-                                </div>
-                            </div>
-
-                            <div class="field">
-                                <label class="label">Sex</label>
-                                <div class="control">
-                                    <label class="radio">
-                                    <input type="radio" name="question" checked disabled>
-                                    Male
-                                    </label>
-                                    <label class="radio">
-                                    <input type="radio" name="question" disabled>
-                                    Female
-                                    </label>
-                                </div>
-                            </div>
-                            
-                            <div class="field is-grouped">
-                                <div class="control">
-                                <button class="button is-info" @click="updateProfile();profileModal()">Submit</button>
-                                </div>
-                            </div>
-
-                        </div> <!--End of box-->
-                        </div> <!--End of container-->
-
-                    </div> <!--End of Modal Content-->
-                    <button class="modal-close is-large" aria-label="close" @click="profileModal()"></button>
-                </div>
+            <UpdateProfile :isOpenProfile="isOpenProfile" v-on:close-profile="profileModal()" v-on:update-profile="updateProfile"></UpdateProfile>
 
             <!--Second Column with Current Stats and Goals-->
             <div class="column is-one-third">
@@ -248,7 +186,10 @@
 </template>
 
 <script>
+import UpdateProfile from "@/components/UpdateProfile.vue";
+
 export default {
+    props: ["isProfileOpen"],
     data: () => ({
         image: "https://external-preview.redd.it/BQ9ia45GPitMXmDRYj-I4MkAySsaQ8y3pmNdyT0xp6s.jpg?auto=webp&s=a038bba7257999e84e8fd1d2a848d44f3f3b71af",
         //use for modal
@@ -260,11 +201,6 @@ export default {
         height: 180,
         weight: 200,
         sex: "Male",
-        //Use Modal form to change stats with v-modal
-        newdescription: "",
-        newage: 0,
-        newheight: 0,
-        newweight: 0,
         //goals
         focus: "Weight Lost",
         goalweight: 190,
@@ -280,11 +216,11 @@ export default {
             this.goalweight = this.newgoalweight,
             this.goalsteps = this.newgoalsteps
         },
-        updateProfile () {
-            this.description = this.newdescription,
-            this.age = this.newage,
-            this.height = this.newheight,
-            this.weight = this.newweight
+        updateProfile (newdescription, newage, newheight, newweight) {
+            this.description = newdescription,
+            this.age = newage,
+            this.height = newheight,
+            this.weight = newweight
         },
         goalModal () {
             this.isOpenGoal = !this.isOpenGoal;
@@ -297,6 +233,9 @@ export default {
         weightdif () {
             return Math.abs(this.weight - this.goalweight)
         }
+    },
+    components: {
+        UpdateProfile
     }
 }
 </script>
