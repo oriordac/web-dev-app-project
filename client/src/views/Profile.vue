@@ -71,63 +71,7 @@
                     </footer>
                 </div>
 
-                <!--MODAL to change goals with a form-->
-                <div class="modal" :class="{'is-active':isOpenGoal}">
-                    <div class="modal-background"></div>
-                    <div class="modal-content">
-
-                        <div class="container">
-                        <div class="box">
-                            <h1 class="title">Change Goals</h1>
-                            <div class="field">
-                                <label class="label">Focus</label>
-                                <p class="control">
-                                    <span class="select">
-                                    <select v-model="newfocus">
-                                        <option selected>Weight Lost</option>
-                                        <option>Weight Gain</option>
-                                        <option>Maintence</option>
-                                        <option>Strength Training</option>
-                                        <option>Cardio Training</option>
-                                    </select>
-                                    </span>
-                                </p>
-                            </div>
-
-                            <div class="field">
-                                <label class="label">Weight Goal</label>
-                                <div class="control has-icons-left has-icons-right">
-                                    <input class="input" type="number" :placeholder="goalweight" v-model="newgoalweight">
-                                    <span class="icon is-small is-left">
-                                        <i class="fas fa-weight"></i>
-                                    </span>
-                                    <p class="help is-dark">Enter your desired weight</p>
-                                </div>
-                            </div>
-                            
-                            <div class="field">
-                                <label class="label">Steps Goal</label>
-                                <div class="control has-icons-left">
-                                <input class="input" type="number" :placeholder="goalsteps" v-model="newgoalsteps">
-                                <span class="icon is-small is-left">
-                                    <i class="fas fa-shoe-prints"></i>
-                                </span>
-                                </div>
-                                <p class="help is-dark">Enter your average steps goal</p>
-                            </div>
-                            
-                            <div class="field is-grouped">
-                                <div class="control">
-                                <button class="button is-info" @click="updateGoals();goalModal()">Submit</button>
-                                </div>
-                            </div>
-
-                        </div> <!--End of box-->
-                        </div> <!--End of container-->
-
-                    </div> <!--End of Modal Content-->
-                    <button class="modal-close is-large" aria-label="close" @click="goalModal()"></button>
-                </div>
+            <UpdateGoals :isOpenGoal="isOpenGoal" v-on:update-goals="updateGoals" v-on:close-goals="goalModal()"></UpdateGoals>  
 
                 <br> <!--adds space between elements-->
 
@@ -187,9 +131,9 @@
 
 <script>
 import UpdateProfile from "@/components/UpdateProfile.vue";
+import UpdateGoals from "@/components/UpdateGoals.vue"
 
 export default {
-    props: ["isProfileOpen"],
     data: () => ({
         image: "https://external-preview.redd.it/BQ9ia45GPitMXmDRYj-I4MkAySsaQ8y3pmNdyT0xp6s.jpg?auto=webp&s=a038bba7257999e84e8fd1d2a848d44f3f3b71af",
         //use for modal
@@ -205,16 +149,12 @@ export default {
         focus: "Weight Lost",
         goalweight: 190,
         goalsteps: 5000,
-        //Use Modal form to change goals with v-modal
-        newfocus: "",
-        newgoalweight: 0,
-        newgoalsteps: 0,
     }),
     methods: {
-        updateGoals () {
-            this.focus = this.newfocus,
-            this.goalweight = this.newgoalweight,
-            this.goalsteps = this.newgoalsteps
+        updateGoals (newfocus, newgoalweight, newgoalsteps) {
+            this.focus = newfocus,
+            this.goalweight = newgoalweight,
+            this.goalsteps = newgoalsteps
         },
         updateProfile (newdescription, newage, newheight, newweight) {
             this.description = newdescription,
@@ -235,7 +175,8 @@ export default {
         }
     },
     components: {
-        UpdateProfile
+        UpdateProfile,
+        UpdateGoals
     }
 }
 </script>
