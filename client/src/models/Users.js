@@ -1,5 +1,5 @@
 const Users = [
-    {Name: "Thor Odison", Password:"Mjolnir", Email:"odinson@asgard.com"},
+    {Name: "Thor Odinson", Password:"Mjolnir", Email:"odinson@asgard.com"},
     {Name: "Odin Allfather", Password: "Gungnir", Email: "allfather@asgard.com"}
 ];
 
