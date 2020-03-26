@@ -75,10 +75,10 @@ export default {
     methods: {
         updateProfile() {
         this.$emit('update-profile', this.newdescription, this.newage, this.newheight, this.newweight);
-        this.$emit('close-profile', this.isOpenProfile);
+        this.$emit('close-profile');
         },
         closeProfile() {
-            this.isOpenProfile =! this.isOpenProfile
+            this.$emit('close-profile');
         }
     }
 }
