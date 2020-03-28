@@ -21,6 +21,7 @@ const routes = [
   
   {path: '/liquid', name: 'Liquid', component: () => import(/* webpackChunkName: "about" */ '../views/Liquid.vue'), meta: { isSecret: true }},
   {path: '/calorie', name: 'Calorie', component: () => import(/* webpackChunkName: "about" */ '../views/Calorie.vue'), meta: { isSecret: true }},
+  {path: '/cardio', name: 'Cardio', component: () => import(/* webpackChunkName: "about" */ '../views/Cardio.vue'), meta: { isSecret: true }}
 ]
 
 const router = new VueRouter({

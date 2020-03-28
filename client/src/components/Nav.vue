@@ -44,6 +44,9 @@
             <router-link to="/routine" class="navbar-item" active-class="is-current">
                 Strength Routines
             </router-link>
+            <router-link to="/cardio" class="navbar-item" active-class="is-current">
+                Cardio
+            </router-link>
             </div>
         </div>
         </div>

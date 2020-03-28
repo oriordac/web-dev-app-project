@@ -4,6 +4,7 @@ import router from './router'
 
 import 'bulma'
 import '@fortawesome/fontawesome-free/css/all.css'
+import 'axios'
 
 Vue.config.productionTip = false
 
