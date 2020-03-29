@@ -71,7 +71,7 @@ export default {
         this.$emit('close-goals', this.isOpenGoal);
         },
         closeGoals() {
-            this.isOpenGoal =! this.isOpenGoal
+            this.$emit('close-goals', this.isOpenGoal);
         }
     }
 }
