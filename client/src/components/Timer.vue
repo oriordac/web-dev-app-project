@@ -1,6 +1,6 @@
 <template>
     <section id="Timer">
-        <div class="box has-text-centered has-background-info">
+        <div class="box has-text-centered has-background-dark">
             
             <div class="title is-2">
                 <span id="hours">{{ hours }}</span>
@@ -9,7 +9,7 @@
                 <span id="middle">:</span>
                 <span id="seconds">{{ seconds }}</span>
             </div>
-
+            <br>
             <div class="level">
                 <div class="level-item buttons has-text-centered">
                     <!--Start Timer -->
