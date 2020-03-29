@@ -18,6 +18,7 @@
                         </div>
                     </div>
 
+                    <transition name="fade">
                     <div class="notification has-text-centered has-background-dark has-text-white" v-if="typeof weather.main != 'undefined'">
                         <div class="level-item title">{{ weather.name }}, {{ weather.sys.country }}</div>
                         <p class="level-item content">{{ dateBuilder() }}</p>
@@ -25,6 +26,7 @@
                         <div class="level-item title is-4">{{ Math.round(weather.main.temp) }}°F</div>
                         <div class="level-item">{{ weather.weather[0].main }}</div>
                     </div>
+                    </transition>
 
                     <label class="label">Type of Cardio</label>
                     <div class="field">
@@ -86,5 +88,13 @@ export default {
 </script>
 
 <style>
-
+    .fade-enter {
+        opacity: 0;
+    }
+    .fade-enter-to, .fade-leave-to {
+        transition: opacity 2s ease-out;
+    }
+    .fade-leave {
+        opacity: 0;
+    }
 </style>
