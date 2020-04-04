@@ -42,7 +42,7 @@
                 </div>
             </div>
             <!--Use v-for to generate all the routine cards-->
-            <div class="column is-one-quarter" v-for="(card,i) in cards" :key="card.title">
+            <div class="column is-one-quarter" v-for="(card,i) in routines" :key="card.title">
                 <div class="card-image">
                 <div class="card">
                     <figure class="image is-square">
@@ -95,46 +95,11 @@
 import AddRoutine from "@/components/AddRoutine.vue";
 import Workout from "@/components/Workout.vue";
 
+import { routines, remove, add, adminModal, logModal} from "../models/Routines";
+
 export default {
     data: () => ({
-        cards: [
-            {
-                title: "Back",
-                photo: "http://cs.newpaltz.edu/~oriordac1/assets/back.jpg",
-                isOpen: false,
-                exercises: [ "Row", "Angle Row", "Dumbbell Row" ]
-            },
-            {
-                title: "Biceps",
-                photo: "http://cs.newpaltz.edu/~oriordac1/assets/bicep.jpg",
-                isOpen: false,
-                exercises: [ "Dumbbell Bicep Curl", "Hammer Curl" ]
-            },
-            {
-                title: "Chest",
-                photo: "http://cs.newpaltz.edu/~oriordac1/assets/chest.jpg",
-                isOpen: false,
-                exercises: [ "Barbell Bench Press", "Incline Bench Press" ]
-            },
-            {
-                title: "Shoulders",
-                photo:"http://cs.newpaltz.edu/~oriordac1/assets/shoulder.jpg",
-                isOpen: false,
-                exercises: [ "Barbell Shoulder Press", "Dumbbell Shoulder Press" ]
-            },
-            {
-                title: "Triceps",
-                photo: "http://cs.newpaltz.edu/~oriordac1/assets/tricep.jpg",
-                isOpen: false,
-                exercises: [ "Dumbbell Kickbacks", "Seated Tricep Press" ]
-            },
-            {
-                title: "Legs",
-                photo: "http://cs.newpaltz.edu/~oriordac1/assets/legs.jpg",
-                isOpen: false,
-                exercises: [ "Deadlift", "Squat", "Leg Curl" ]
-            },
-        ],
+        routines,
         //for adminCard and access to admin features
         adminCard: false,
         isAdmin: true,
@@ -144,25 +109,11 @@ export default {
         
     }),
     methods: {
-        remove(i){
-          this.cards.splice(i, 1);
-        },
-        add(newTitle, newPhoto, newExcer1, newExcer2, newExcer3) {
-          this.cards.push(
-              { 
-                title: newTitle,
-                photo: newPhoto,
-                isOpen: false,
-                exercises: [newExcer1, newExcer2, newExcer3]
-              }
-            )
-        },
-        adminModal () {
-            this.isForm = !this.isForm
-        },
-        logModal () {
-            this.isLog = !this.isLog
-        }
+        remove,
+        add,
+        adminModal,
+        logModal
+
     },
     components: {
         Workout,
