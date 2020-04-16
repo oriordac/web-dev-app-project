@@ -42,7 +42,7 @@
                 </div>
             </div>
             <!--Use v-for to generate all the routine cards-->
-            <div class="column is-one-quarter" v-for="(card,i) in routines" :key="card.title">
+            <div class="column is-one-quarter" v-for="(card,i) in pointer.State.Routines" :key="card.title">
                 <div class="card-image">
                 <div class="card">
                     <figure class="image is-square">
@@ -95,11 +95,11 @@
 import AddRoutine from "@/components/AddRoutine.vue";
 import Workout from "@/components/Workout.vue";
 
-import { routines, remove, add, adminModal, logModal} from "../models/Routines";
+import * as pointer from "../models/Routines";
 
 export default {
     data: () => ({
-        routines,
+        pointer,
         //for adminCard and access to admin features
         adminCard: false,
         isAdmin: true,
@@ -109,15 +109,32 @@ export default {
         
     }),
     methods: {
-        remove,
-        add,
-        adminModal,
-        logModal
-
+        remove(i) {
+            pointer.State.Routines.splice(i, 1);
+        },
+        add(newTitle, newPhoto, newExcer1, newExcer2, newExcer3) {
+            this.routines.push(
+                { 
+                title: newTitle,
+                photo: newPhoto,
+                isOpen: false,
+                exercises: [newExcer1, newExcer2, newExcer3]
+                }
+            )
+        },
+        adminModal () {
+            this.isForm = !this.isForm
+        },
+        logModal () {
+            this.isLog = !this.isLog
+        }
     },
     components: {
         Workout,
         AddRoutine
+    },
+    created() {
+        pointer.Init()
     }
 }
 </script>

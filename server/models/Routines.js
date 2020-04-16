@@ -1,4 +1,4 @@
-const routines =  [
+const Routines =  [
     {
         title: "Back",
         photo: "http://cs.newpaltz.edu/~oriordac1/assets/back.jpg",
@@ -37,25 +37,22 @@ const routines =  [
     },
 ];
 
-module.exports = {
+function remove(i) {
+    this.Routines.splice(i, 1);
+};
 
-    remove(i) {
-        this.routines.splice(i, 1);
-    },
-    add(newTitle, newPhoto, newExcer1, newExcer2, newExcer3) {
-        this.routines.push(
-            { 
-            title: newTitle,
-            photo: newPhoto,
-            isOpen: false,
-            exercises: [newExcer1, newExcer2, newExcer3]
-            }
-        )
-    },
-    adminModal () {
-        this.isForm = !this.isForm
-    },
-    logModal () {
-        this.isLog = !this.isLog
-    }
+function add(newTitle, newPhoto, newExcer1, newExcer2, newExcer3) {
+    this.Routines.push(
+        { 
+        title: newTitle,
+        photo: newPhoto,
+        isOpen: false,
+        exercises: [newExcer1, newExcer2, newExcer3]
+        }
+    )
+};
+
+module.exports = {
+    Routines,
+    remove, add
 }
