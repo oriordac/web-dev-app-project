@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 
 const photosController = require('./controllers/photos');
+const routinesController = require('./controllers/routines');
 
 const app = express();
 const port = 3000;
@@ -17,8 +18,8 @@ app
     .use(express.urlencoded({ extended: true }))
     .use(express.static(__dirname + '/../client/dist'))
     
-    .get('/', (req, res) => res.send('This class is awesome'))
-    .use('/test', photosController)
+    .use('/', photosController)
+    .use('/routines', routinesController)
 
     /*.use((req, res) => {
         const homePath = path.join(__dirname , '/../dist/index.html');

@@ -6,8 +6,7 @@ const router = express.Router();
 
 router
     .get("/", (req, res) => res.send({
-        Test: photos.Photos
+        Photos: photos.Photos
     }) )
-    .post('/add', (req, res) => res.send(photos.addPhoto(req.body.photoimage, req.body.locationname)))
 
 module.exports = router;
