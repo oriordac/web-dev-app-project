@@ -4,13 +4,13 @@ const Users = [
 ];
 
 module.exports = {
-
+    
     Login(username, password) {
-    const user = Users.find(x=> x.Name == username);
-    if(!user) throw Error('User not found');
-    if(user.Password != password) throw Error('Wrong Password');
+        const user = Users.find(x=> x.Name == username);
+        if(!user) throw Error('User not found');
+        if(user.Password != password) throw Error('Wrong Password');
 
-    return user;
+        return user;
     },
 
     Get: userid => Users[userid]
