@@ -2,7 +2,9 @@ const express = require('express');
 const path = require('path');
 
 const photosController = require('./controllers/photos');
+const usersController = require('./controllers/users');
 const routinesController = require('./controllers/routines');
+const profileController = require('./controllers/profile');
 
 const app = express();
 const port = 3000;
@@ -19,7 +21,9 @@ app
     .use(express.static(__dirname + '/../client/dist'))
     
     .use('/', photosController)
+    .use('/login', usersController)
     .use('/routines', routinesController)
+    .use('/profile', profileController)
 
     /*.use((req, res) => {
         const homePath = path.join(__dirname , '/../dist/index.html');

@@ -25,8 +25,8 @@
                 <div class="card-content">
                     <div class="media">
                         <div class="media-content">
-                            <p class="title is-4">Marcus Aurelius</p>
-                            <p class="subtitle is-6">@meditations</p>
+                            <p class="title is-4">{{ name }}</p>
+                            <p class="subtitle is-6">@{{ handle }}</p>
                         </div>
                         <div class="media-right">
                             <span class="button icon" @click="profileModal()">
@@ -131,7 +131,8 @@
 
 <script>
 import UpdateProfile from "@/components/UpdateProfile.vue";
-import UpdateGoals from "@/components/UpdateGoals.vue"
+import UpdateGoals from "@/components/UpdateGoals.vue";
+import * as pointer from "@/models/Profile";
 
 export default {
     data: () => ({
@@ -140,15 +141,18 @@ export default {
         isOpenProfile: false,
         isOpenGoal: false,
         //current statistics
-        description: "History enthusiast interested in hiking as a training regime to emulate the marches of Roman legionnaires",
-        age: 23,
-        height: 180,
-        weight: 200,
-        sex: "Male",
+        name: pointer.State.Profile[0].Name,
+        handle: pointer.State.Profile[0].Handle,
+        image: pointer.State.Profile[0].Image,
+        description: pointer.State.Profile[0].Description,
+        age: pointer.State.Profile[0].Age,
+        height: pointer.State.Profile[0].Height,
+        weight: pointer.State.Profile[0].Weight,
+        sex: pointer.State.Profile[0].Sex,
         //goals
-        focus: "Weight Lost",
-        goalweight: 190,
-        goalsteps: 5000,
+        focus: pointer.State.Goals[0].Focus,
+        goalweight: pointer.State.Goals[0].WeightGoal,
+        goalsteps: pointer.State.Goals[0].StepGoal,
     }),
     methods: {
         updateGoals (newfocus, newgoalweight, newgoalsteps) {
@@ -173,6 +177,9 @@ export default {
         weightdif () {
             return Math.abs(this.weight - this.goalweight)
         }
+    },
+    created() {
+        pointer.Init()
     },
     components: {
         UpdateProfile,
