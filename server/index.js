@@ -21,7 +21,7 @@ app
     .use(express.static(__dirname + '/../client/dist'))
     
     .use('/', photosController)
-    .use('/login', usersController)
+    .use('/users', usersController)
     .use('/routines', routinesController)
     .use('/profile', profileController)
 

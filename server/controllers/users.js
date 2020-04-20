@@ -7,7 +7,7 @@ const router = express.Router();
 router
     .post("/login", (req, res) => {
         try {
-            const user = users.Login(req.body.email, req.body.password);
+            const user = users.Login(req.body.username, req.body.password);
             res.send( {...user, Password: undefined} );
         } catch (error) {
             res.status(401).send( {message: error.message} );
