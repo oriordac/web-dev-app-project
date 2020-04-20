@@ -3,9 +3,10 @@ import myFetch from "./myFetch";
 export let State = {};
 
 export function Init(){
-  myFetch('http://localhost:3000/')
-      .then(x=> { 
-          State = x;
-          console.log(x);
-      });
+    //need to pass an empty string to mirror the homepage
+    myFetch("")
+        .then(x=> { 
+            State = x;
+            console.log(x);
+        });
 }
