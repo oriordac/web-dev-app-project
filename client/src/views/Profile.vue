@@ -132,7 +132,7 @@
 <script>
 import UpdateProfile from "@/components/UpdateProfile.vue";
 import UpdateGoals from "@/components/UpdateGoals.vue";
-import * as pointer from "@/models/Profile";
+import Profile from "@/models/Profile";
 
 export default {
     data: () => ({
@@ -141,18 +141,18 @@ export default {
         isOpenProfile: false,
         isOpenGoal: false,
         //current statistics
-        name: pointer.State.Profile.Name,
-        handle: pointer.State.Profile.Handle,
-        image: pointer.State.Profile.Image,
-        description: pointer.State.Profile.Description,
-        age: pointer.State.Profile.Age,
-        height: pointer.State.Profile.Height,
-        weight: pointer.State.Profile.Weight,
-        sex: pointer.State.Profile.Sex,
+        name: Profile.State.Profile.Name,
+        handle: Profile.State.Profile.Handle,
+        image: Profile.State.Profile.Image,
+        description: Profile.State.Profile.Description,
+        age: Profile.State.Profile.Age,
+        height: Profile.State.Profile.Height,
+        weight: Profile.State.Profile.Weight,
+        sex: Profile.State.Profile.Sex,
         //goals
-        focus: pointer.State.Goals.Focus,
-        goalweight: pointer.State.Goals.WeightGoal,
-        goalsteps: pointer.State.Goals.StepGoal,
+        focus: Profile.State.Goals.Focus,
+        goalweight: Profile.State.Goals.WeightGoal,
+        goalsteps: Profile.State.Goals.StepGoal,
     }),
     methods: {
         updateGoals (newfocus, newgoalweight, newgoalsteps) {
@@ -179,7 +179,7 @@ export default {
         }
     },
     created() {
-        pointer.Init()
+        Profile.Init()
     },
     components: {
         UpdateProfile,
@@ -191,3 +191,4 @@ export default {
 <style>
 
 </style>
+
