@@ -1,6 +1,6 @@
 const Users = [
-    {Name: "Thor Odinson", Password:"Mjolnir", Email:"odinson@asgard.com", Userid: 0},
-    {Name: "Odin Allfather", Password: "Gungnir", Email: "allfather@asgard.com", Userid: 1}
+    {Name: "Thor Odinson", Password:"Mjolnir", Email:"odinson@asgard.com", userId: 0},
+    {Name: "Odin Allfather", Password: "Gungnir", Email: "allfather@asgard.com", userId: 1}
 ];
 
 module.exports = {
