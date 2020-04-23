@@ -1,12 +1,14 @@
 import myFetch from "./myFetch";
 
-export let State = {};
+export default {
+    State: {},
+    Init(){
+        //need to pass an empty path to mirror the homepage
+        myFetch("/")
+            .then(x=> { 
+                this.State = x;
+                console.log(x);
+            });
+    }
 
-export function Init(){
-    //need to pass an empty string to mirror the homepage
-    myFetch("")
-        .then(x=> { 
-            State = x;
-            console.log(x);
-        });
 }
