@@ -37,19 +37,21 @@ const Routines =  [
     },
 ];
 
-function remove(i) {
-    this.Routines.splice(i, 1);
+function remove(index) {
+    this.Routines.splice(index, 1);
+    return true;
 };
 
-function add(newTitle, newPhoto, newExcer1, newExcer2, newExcer3) {
+function add(newTitle, newPhoto, newExer1, newExer2, newExer3) {
     this.Routines.push(
         { 
         title: newTitle,
         photo: newPhoto,
         isOpen: false,
-        exercises: [newExcer1, newExcer2, newExcer3]
+        exercises: [newExer1, newExer2, newExer3]
         }
-    )
+    );
+    return this.Routines[this.Routines.length - 1]
 };
 
 module.exports = {

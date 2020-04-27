@@ -42,7 +42,7 @@
                 </div>
             </div>
             <!--Use v-for to generate all the routine cards-->
-            <div class="column is-one-quarter" v-for="(card,i) in Routines.State.Routines" :key="card.title">
+            <div class="column is-one-quarter" v-for="(card,index) in Routines.State.Routines" :key="card.title">
                 <div class="card-image">
                 <div class="card">
                     <figure class="image is-square">
@@ -53,7 +53,7 @@
                     <p class="card-header-title">
                     {{card.title}}
                     </p>
-                    <a href="#" class="card-header-icon" aria-label="more options" @click="remove(i)" v-if="isAdmin">
+                    <a href="#" class="card-header-icon" aria-label="more options" @click="remove(index)" v-if="isAdmin">
                     <span class="icon">
                         <i class="delete" aria-hidden="true"></i>
                     </span>
@@ -79,7 +79,7 @@
     <!--Modal for the adminCard only. Form to push new routine card-->
     <AddRoutine :isForm="isForm" v-on:add-routine="add" v-on:close-admin="adminModal"></AddRoutine>
 
-    <!-- Modal to get to timer. This is for all cards besides the admin/add card-->
+    <!-- Modal to get to exercise log. This is for all cards besides the admin/add card-->
     <div class="modal" :class="{'is-active': isLog}">
         <div class="modal-background"></div>
         <div class="modal-content">
@@ -109,19 +109,32 @@ export default {
         
     }),
     methods: {
-        remove(i) {
-            Routines.State.Routines.splice(i, 1);
+        async remove(index) {
+            try{
+                await Routines.remove(index);
+                Routines.State.Routines.splice(index, 1);
+            } catch(error) {
+                this.error = error;
+            }
         },
-        add(newTitle, newPhoto, newExcer1, newExcer2, newExcer3) {
-            this.Routines.State.Routines.push(
+        async add(newTitle, newPhoto, newExcer1, newExcer2, newExcer3) {
+            try{
+                await Routines.add(newTitle, newPhoto, newExcer1, newExcer2, newExcer3);
+                this.Routines.State.Routines.push(
                 { 
-                title: newTitle,
-                photo: newPhoto,
-                isOpen: false,
-                exercises: [newExcer1, newExcer2, newExcer3]
+                    title: newTitle,
+                    photo: newPhoto,
+                    isOpen: false,
+                    exercises: [newExcer1, newExcer2, newExcer3]
                 }
             )
+            } catch(error) {
+                this.error = error
+            }
         },
+        /*add(newTitle, newPhoto, newExcer1, newExcer2, newExcer3) {
+            
+        }, */
         adminModal () {
             this.isForm = !this.isForm
         },
