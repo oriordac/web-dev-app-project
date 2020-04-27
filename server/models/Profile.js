@@ -37,6 +37,23 @@ const Goals = [
     }
 ];
 
+const Exercises = [
+    {
+        UserId: 0, 
+        Exercise: [
+            ["14:00 - 24 Apr", "Biceps", "0:30", 100],
+            ["09:30 - 25 Apr", "Running", "0:45", 250]
+        ]
+    },
+    {
+        UserId: 1,
+        Exercise: [
+            ["16:00 - 20 Apr", "Back", "1:00", 225],
+            ["07:30 - 19 Apr", "Rowing", "2:00", 350]
+        ]
+    }    
+];
+
 function editProfile(userid, newAge, newHeight, newWeight, newDescription) {
     const user = Profile.find(x=> x.UserId == userid);
     console.log(user);
@@ -53,7 +70,13 @@ function editGoals(userid, newFocus, newStep, newWeight) {
     user.WeightGoal = newWeight;
 };
 
+function addExercise(userid, date, type, duration, calories) {
+    const user = Exercises.find(x=> x.UserId == userid);
+    user.Exercise.push([date, type, duration, calories]);
+    return true;
+}
+
 module.exports = {
-    Profile, Goals,
-    editProfile, editGoals
+    Profile, Goals, Exercises,
+    editProfile, editGoals, addExercise
 }

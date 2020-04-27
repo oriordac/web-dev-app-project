@@ -31,7 +31,7 @@
                     <label class="label">Type of Cardio</label>
                     <div class="field">
                         <div class="select is-danger">
-                        <select>
+                        <select v-model="type">
                             <option>Hiking</option>
                             <option>Running</option>
                             <option>Walking</option>
@@ -41,7 +41,23 @@
                         </div>
                     </div>
 
-                    <Timer></Timer>
+                    <label class="label">Calories</label>
+                    <div class="field">
+                        <div class="control">
+                            <input class="input is-danger" type="number" placeholder="0" v-model.number="calories">
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <div class="control">
+                            <button class="button is-danger" @click="addExercise">Submit</button>
+                        </div>
+                    </div>
+
+                    <Timer v-on:send-time="setTime"></Timer>
+
+                    
+
                 </div>
             </div>
         </div>
@@ -52,18 +68,27 @@
 <script>
 import axios from 'axios'
 import Timer from "@/components/Timer.vue";
+import Cardio from "@/models/Cardio";
 
 export default {
     components: {
         Timer
     },
     data: () => ({
+        Cardio,
+        //Needed for weather portion
         query: "",
         weather: {},
         api_key: "d64fded4f2f41dd455fcb03f91a6ea3e",
-        url_base: "http://api.openweathermap.org/data/2.5/"
+        url_base: "http://api.openweathermap.org/data/2.5/",
+        //Needed to submit exercise
+        type: "",
+        calories: 0,
+        hours: "",
+        minutes: ""
     }),
     methods: {
+         //For weather portion
         fetchWeather () {
             axios.get(`${this.url_base}weather?q=${this.query}&units=imperial&APPID=${this.api_key}`)
             .then(res => {
@@ -82,6 +107,29 @@ export default {
             let month = months[d.getMonth()];
             let year = d.getFullYear();
             return `${day} ${date} ${month} ${year}`;
+        },
+        //For exercise portion
+        shortDateBuilder () {
+            let d = new Date();
+            let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+            let date = d.getDate();
+            let month = months[d.getMonth()];
+            let starthour = d.getHours() - this.hours;
+            let startminute = d.getMinutes() - this.minutes;
+            return `${starthour}:${startminute} - ${date} ${month}`;
+        },
+        setTime(hours, minutes) {
+            this.hours = hours;
+            this.minutes = minutes;
+        },
+        async addExercise() {
+            try {
+                let date = this.shortDateBuilder();
+                let time = `${this.hours}:${this.minutes}`;
+                await Cardio.add(date, this.type, time, this.calories);
+            } catch(error) {
+                this.error = error
+            }
         }
     }
 }
