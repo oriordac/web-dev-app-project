@@ -35,7 +35,7 @@
 <div class="media-content">
   <div class="content">
     <p>
-      <strong>{{ post.Name }}</strong> <small>@{{ post.Handle }}</small> <small>{{ timestamp }}</small>
+      <strong>{{ post.Name }}</strong> <small>@{{ post.Handle }}</small> <small>{{ post.Timestamp }}</small>
       <br>
       {{ post.Text }}
     </p>
@@ -62,20 +62,19 @@ export default {
   },
   data: () => ({
     Social,
-    isOpenNewPost: false,
-    timestamp: "Apr 26"
+    isOpenNewPost: false
   }),
   methods: {
     newPostModal() {
       this.isOpenNewPost = !this.isOpenNewPost;
     },
     async newPost(text) {
-            try{
-              await Social.newPost(text);
-            } catch(error) {
-                this.error = error;
-            }
-        },
+      try{
+        await Social.newPost(text);
+      } catch(error) {
+          this.error = error;
+      }
+    }
   },
   created() {
       Social.Init()
