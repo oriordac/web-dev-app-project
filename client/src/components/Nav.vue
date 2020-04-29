@@ -18,6 +18,7 @@
         <router-link to="/" class="navbar-item" active-class="is-current" exact>Home</router-link>
         <router-link to="/about" class="navbar-item" active-class="is-current">About</router-link>
         <router-link to="/test" class="navbar-item" active-class="is-current">Test</router-link>
+        <router-link to="/social" class="navbar-item" active-class="is-current">Social</router-link>
       
 
         <div class="navbar-item has-dropdown is-hoverable">
