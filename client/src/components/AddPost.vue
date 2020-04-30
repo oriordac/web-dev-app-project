@@ -29,28 +29,26 @@
 </template>
 
 <script>
+import Social from "@/models/Social";
+
 export default {
     props: ["isOpenNewPost"],
     data: () => ({
+        Social,
         text: ""
     }),
     methods: {
-        post() {
-        this.$emit('post-newpost', this.text);
-        this.$emit('close-newpost');
+        async post() {
+            try {
+                await Social.newPost(this.text);
+            } catch (error) {
+                this.error = error;    
+            }
+            this.$emit('close-newpost');
         },
         closePost() {
             this.$emit('close-newpost');
-        },
-        shortDateBuilder () {
-            let d = new Date();
-            let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-            let date = d.getDate();
-            let month = months[d.getMonth()];
-            let starthour = d.getHours();
-            let startminute = d.getMinutes();
-            return `${starthour}:${startminute} - ${date} ${month}`;
-        },
+        }
     }
 }
 </script>

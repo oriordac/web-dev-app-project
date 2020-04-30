@@ -25,7 +25,7 @@
 </div>
 
 <!-- For-loop to generate posts on the server-->
-<div class="box" v-for="post in Social.State.Social" :key="post.text">
+<div class="box" v-for="post in Social.State.Social" :key="post.Timestamp">
 <article class="media">
 <figure class="media-left">
   <p class="image is-64x64">
@@ -47,13 +47,14 @@
 </section>
 </div>
 
-<NewPost :isOpenNewPost="isOpenNewPost" v-on:close-newpost="newPostModal" v-on:post-newpost="newPost"></NewPost>
+<NewPost :isOpenNewPost="isOpenNewPost" v-on:close-newpost="newPostModal"></NewPost>
 
 </div>
 </template>
 
 <script>
 import Social from "@/models/Social";
+
 import NewPost from "@/components/AddPost.vue";
 
 export default {
@@ -67,13 +68,6 @@ export default {
   methods: {
     newPostModal() {
       this.isOpenNewPost = !this.isOpenNewPost;
-    },
-    async newPost(text) {
-      try{
-        await Social.newPost(text);
-      } catch(error) {
-          this.error = error;
-      }
     }
   },
   created() {

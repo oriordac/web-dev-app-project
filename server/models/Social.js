@@ -10,14 +10,19 @@ const Posts = [
         Text: "I love hiking in Jotunheim.",
         Timestamp: "9:00 - 26 Apr"
     }
-]
-function shortDateBuilder () {
+];
+
+function padTime(time) {
+    return (time < 10 ? '0' : '') + time;
+}
+
+function shortDateBuilder() {
     let d = new Date();
     let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     let date = d.getDate();
     let month = months[d.getMonth()];
     let hour = d.getHours();
-    let minute = d.getMinutes();
+    let minute = padTime(d.getMinutes());
     return `${hour}:${minute} - ${date} ${month}`;
 }
 function newPost(userid, text) {
