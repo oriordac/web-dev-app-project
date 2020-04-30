@@ -61,6 +61,7 @@ function editProfile(userid, newAge, newHeight, newWeight, newDescription) {
     user.Height = newHeight;
     user.Weight = newWeight;
     user.Description = newDescription;
+    return user;
 };
 
 function editGoals(userid, newFocus, newStep, newWeight) {
@@ -68,6 +69,7 @@ function editGoals(userid, newFocus, newStep, newWeight) {
     user.Focus = newFocus;
     user.StepGoal = newStep;
     user.WeightGoal = newWeight;
+    return user;
 };
 
 function addExercise(userid, date, type, duration, calories) {

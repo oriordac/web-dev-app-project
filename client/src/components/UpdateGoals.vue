@@ -58,17 +58,27 @@
 </template>
 
 <script>
+import Profile from "@/models/Profile";
+
 export default {
     props: ["isOpenGoal"],
     data: () => ({
+        Profile,
         newfocus: "",
         newgoalweight: 0,
         newgoalsteps: 0,
     }),
     methods: {
-        updateGoals() {
-        this.$emit('update-goals', this.newfocus, this.newgoalweight, this.newgoalsteps);
-        this.$emit('close-goals', this.isOpenGoal);
+        async updateGoals() {
+            //update server state
+            try {
+                await Profile.editGoals(this.newfocus, this.newgoalsteps, this.newgoalweight)
+            } catch (error) {
+                this.error = error;
+            }
+            //update Vue instance
+            this.$emit('update-goals', this.newfocus, this.newgoalweight, this.newgoalsteps);
+            this.$emit('close-goals', this.isOpenGoal);
         },
         closeGoals() {
             this.$emit('close-goals', this.isOpenGoal);

@@ -17,10 +17,10 @@ router
         Exercises: profile.Exercises[req.userId]
     }) )
     .post('/editprofile', (req, res) => res.send(
-        profile.editProfile(req.body.userid, req.body.age, req.body.height, req.body.weight, req.body.description)
+        profile.editProfile(req.userId, req.body.age, req.body.height, req.body.weight, req.body.description)
     ) )
     .post('/editgoals', (req, res) => res.send(
-        profile.editGoals(req.body.userid, req.body.focus, req.body.steps, req.body.weight)
+        profile.editGoals(req.userId, req.body.focus, req.body.steps, req.body.weight)
     ) )
     .post('/addexercise', (req, res) => res.send(
         profile.addExercise(req.userId, req.body.date, req.body.type, req.body.duration, req.body.calories)
