@@ -9,12 +9,16 @@ export default {
                 console.log(x);
             });
     },
-    //POST request to add a new exercise to State
+    //POST request to add a new routine to State.Routines
     async add(newTitle, newPhoto, newExer1, newExer2, newExer3) {
         await myFetch('/routines/add', {newTitle, newPhoto, newExer1, newExer2, newExer3});
     },
     //POST request to remove an excercise from State
     async remove(index) {
         await myFetch('/routines/remove', {index});
+    },
+    //POST request to add a new exercise log to State.Profile
+    async addExercise(date, type, duration, calories) {
+        await myFetch('/profile/addexercise', {date, type, duration, calories});
     }
 }

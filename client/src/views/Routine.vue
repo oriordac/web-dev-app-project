@@ -83,7 +83,7 @@
     <div class="modal" :class="{'is-active': isLog}">
         <div class="modal-background"></div>
         <div class="modal-content">
-            <Workout></Workout>
+            <Workout v-on:close-profile="logModal" v-on:add-exercise="addExercise"></Workout>
         </div>
         <button class="modal-close is-large" aria-label="close" @click="logModal"></button>
     </div>
@@ -132,9 +132,24 @@ export default {
                 this.error = error
             }
         },
-        /*add(newTitle, newPhoto, newExcer1, newExcer2, newExcer3) {
-            
-        }, */
+        shortDateBuilder () {
+            let d = new Date();
+            let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+            let date = d.getDate();
+            let month = months[d.getMonth()];
+            let hours = d.getHours();
+            let minutes = d.getMinutes();
+            return `${hours}:${minutes} - ${date} ${month}`;
+        },
+        async addExercise(hours, minutes, type, calories) {
+            try {
+                let date = this.shortDateBuilder();
+                let duration = `${hours}:${minutes}`;
+                await Routines.addExercise(date, type, duration, calories);
+            } catch(error) {
+                this.error = error
+            }
+        },
         adminModal () {
             this.isForm = !this.isForm
         },
