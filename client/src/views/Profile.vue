@@ -100,17 +100,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><time datetime="2016-1-1">11:09 - 1 Jan 2016</time></td>
-                            <td>Hiking</td>
-                            <td>2:00</td>
-                            <td>350</td>
-                        </tr>
-                        <tr>
-                            <td><time datetime="2016-1-1">14:13 - 9 Jan 2016</time></td>
-                            <td>Running</td>
-                            <td>0:30</td>
-                            <td>120</td>
+                        <tr v-for="row in Profile.State.Exercises.Exercise" :key="row[0]">
+                            <!--date and time-->
+                            <td>{{ row[0] }}</td>
+                            <!--Type of exerxice ex. Running-->
+                            <td>{{ row[1] }}</td>
+                            <!--Length of the exercise-->
+                            <td>{{ row[2] }}</td>
+                            <!--Calories burnt-->
+                            <td>{{ row[3] }}</td>
                         </tr>
                     </tbody>
                     </table>
@@ -136,7 +134,7 @@ import Profile from "@/models/Profile";
 
 export default {
     data: () => ({
-        image: "https://external-preview.redd.it/BQ9ia45GPitMXmDRYj-I4MkAySsaQ8y3pmNdyT0xp6s.jpg?auto=webp&s=a038bba7257999e84e8fd1d2a848d44f3f3b71af",
+        Profile,
         //use for modal
         isOpenProfile: false,
         isOpenGoal: false,
