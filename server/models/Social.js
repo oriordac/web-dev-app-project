@@ -8,7 +8,8 @@ const Posts = [
         Handle: "odinson", 
         Image: "http://cs.newpaltz.edu/~oriordac1/assets/thorodinson.jpg",
         Text: "I love hiking in Jotunheim.",
-        Timestamp: "9:00 - 26 Apr"
+        Timestamp: "9:00 - 26 Apr",
+        Upvote: 0
     }
 ];
 
@@ -37,12 +38,25 @@ function newPost(userid, text) {
         Handle: user.Handle,
         Image: user.Image,
         Text: text,
-        Timestamp: timestamp
+        Timestamp: timestamp,
+        Upvote: 0
     });
+    return true;
+}
+function upvote(index) {
+    //get the post with the matching index
+    const post = Posts[index];
+    post.Upvote++;
+    return true;
+}
+function downvote(index) {
+    //get the post with the matching index
+    const post = Posts[index];
+    post.Upvote--;
     return true;
 }
 
 module.exports = {
     Posts,
-    newPost
+    newPost, upvote, downvote
 }

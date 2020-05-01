@@ -12,5 +12,11 @@ router
         //pass the token and the text for the post
         social.newPost(req.userId, req.body.text)
         ) )
+    .post('/upvote', (req, res) => res.send(
+        social.upvote(req.body.index)
+        ) )
+    .post('/downvote', (req, res) => res.send(
+        social.downvote(req.body.index)
+        ) )
 
 module.exports = router;

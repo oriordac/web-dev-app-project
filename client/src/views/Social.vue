@@ -25,7 +25,7 @@
 </div>
 
 <!-- For-loop to generate posts on the server-->
-<div class="box" v-for="post in Social.State.Social" :key="post.Timestamp">
+<div class="box" v-for="(post, i) in Social.State.Social" :key="post.Timestamp">
 <article class="media">
 <figure class="media-left">
   <p class="image is-64x64">
@@ -40,6 +40,14 @@
       {{ post.Text }}
     </p>
   </div>
+  <nav class="level is-mobile">
+      <div class="level-left">
+        <a class="level-item" @click="upvote(i)" :class="{liked : post.Liked}">
+          <span class="icon is-small"><i class="fas fa-heart"></i></span>
+        </a>
+        <p class="level-item">{{ post.Upvote }}</p>
+      </div>
+    </nav>
 </div>
 </article>
 </div>
@@ -68,7 +76,28 @@ export default {
   methods: {
     newPostModal() {
       this.isOpenNewPost = !this.isOpenNewPost;
-    }
+    },
+    async upvote(index) {
+      let wasLiked = Social.State.Social[index].Liked
+      //if the user has NOT liked the post already
+      if(!wasLiked ) {
+        try {
+          Social.State.Social[index].Upvote++;
+          Social.State.Social[index].Liked = true;
+          await Social.likePost(index);
+        } catch (error) {
+          this.error = error
+        }
+      } else {
+        try {
+          Social.State.Social[index].Upvote--;
+          Social.State.Social[index].Liked = false;
+          await Social.dislikePost(index);
+        } catch (error) {
+          this.error = error;
+        }
+      }
+    } 
   },
   created() {
       Social.Init()
@@ -77,5 +106,10 @@ export default {
 </script>
 
 <style>
-
+  .liked {
+    color: red;
+  }
+  .disliked {
+    color: black;
+  }
 </style>
