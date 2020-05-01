@@ -1,6 +1,6 @@
 const Users = [
-    {Name: "Thor Odinson", Password:"Mjolnir", Email:"odinson@asgard.com", userId: 0},
-    {Name: "Odin Allfather", Password: "Gungnir", Email: "allfather@asgard.com", userId: 1}
+    {Name: "Thor Odinson", Password:"Mjolnir", Email:"odinson@asgard.com", Admin: false, userId: 0},
+    {Name: "Odin Allfather", Password: "Gungnir", Email: "allfather@asgard.com", Admin: true, userId: 1}
 ];
 
 module.exports = {
@@ -12,7 +12,6 @@ module.exports = {
 
         return user;
     },
-
-    Get: userid => Users[userid]
+    checkAdminStatus: userid => Users[userid].Admin
 
 }

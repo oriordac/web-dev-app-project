@@ -8,7 +8,6 @@
                 <i class="fas fa-dumbbell"></i>
             </span>
             Excerise Routine
-            <button class="button is-danger" @click="isAdmin = !isAdmin">Toggle between Admin and User</button>
           </h1>
         </div>
       </div>
@@ -102,7 +101,7 @@ export default {
         Routines,
         //for adminCard and access to admin features
         adminCard: false,
-        isAdmin: true,
+        isAdmin: Routines.State.Admin,
         //booleans to access modals on this page
         isLog: false,
         isForm: false,
