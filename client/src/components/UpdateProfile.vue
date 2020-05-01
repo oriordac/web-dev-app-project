@@ -64,22 +64,32 @@
 </template>
 
 <script>
+import Profile from "@/models/Profile";
+
 export default {
     props: ["isOpenProfile"],
     data: () => ({
+        Profile,
         newdescription: "",
         newage: 0,
         newheight: 0,
         newweight: 0
     }),
     methods: {
-        updateProfile() {
+        async updateProfile() {
+        //edit the state on the server
+        try {
+            await Profile.editProfile(this.newage, this.newheight, this.newweight, this.newdescription);
+        } catch (error) {
+            this.error = error;
+        }
+        //edit profile on vue instance
         this.$emit('update-profile', this.newdescription, this.newage, this.newheight, this.newweight);
         this.$emit('close-profile');
         },
         closeProfile() {
             this.$emit('close-profile');
-        }
+        },
     }
 }
 </script>

@@ -19,7 +19,7 @@
                         </span>
                     </button>
                     <!--Pause Timer -->
-                    <button class="button is-dark" v-if="timer" @click="stopTimer">
+                    <button class="button is-dark" v-if="timer" @click="stopTimer();sendTime()">
                         <span class="icon">
                             <i class="far fa-pause-circle"></i>
                         </span>
@@ -74,6 +74,9 @@ export default {
                 this.totalTime = 0;
                 this.resetTimer()
             }
+        },
+        sendTime() {
+            this.$emit('send-time', this.hours, this.minutes);
         }
     },
 

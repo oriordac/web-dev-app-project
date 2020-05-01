@@ -1,58 +1,24 @@
-export const routines =  [
-    {
-        title: "Back",
-        photo: "http://cs.newpaltz.edu/~oriordac1/assets/back.jpg",
-        isOpen: false,
-        exercises: [ "Row", "Angle Row", "Dumbbell Row" ]
+import myFetch from "./myFetch";
+
+export default {
+    State: {},
+    Init() {
+        myFetch('/routines')
+            .then(x=> { 
+                this.State = {...x, Routines: x.Routines.map(r => ({...r, isOpen: false }) )};
+                console.log(x);
+            });
     },
-    {
-        title: "Biceps",
-        photo: "http://cs.newpaltz.edu/~oriordac1/assets/bicep.jpg",
-        isOpen: false,
-        exercises: [ "Dumbbell Bicep Curl", "Hammer Curl" ]
+    //POST request to add a new routine to State.Routines
+    async add(newTitle, newPhoto, newExer1, newExer2, newExer3) {
+        await myFetch('/routines/add', {newTitle, newPhoto, newExer1, newExer2, newExer3});
     },
-    {
-        title: "Chest",
-        photo: "http://cs.newpaltz.edu/~oriordac1/assets/chest.jpg",
-        isOpen: false,
-        exercises: [ "Barbell Bench Press", "Incline Bench Press" ]
+    //POST request to remove an excercise from State
+    async remove(index) {
+        await myFetch('/routines/remove', {index});
     },
-    {
-        title: "Shoulders",
-        photo:"http://cs.newpaltz.edu/~oriordac1/assets/shoulder.jpg",
-        isOpen: false,
-        exercises: [ "Barbell Shoulder Press", "Dumbbell Shoulder Press" ]
-    },
-    {
-        title: "Triceps",
-        photo: "http://cs.newpaltz.edu/~oriordac1/assets/tricep.jpg",
-        isOpen: false,
-        exercises: [ "Dumbbell Kickbacks", "Seated Tricep Press" ]
-    },
-    {
-        title: "Legs",
-        photo: "http://cs.newpaltz.edu/~oriordac1/assets/legs.jpg",
-        isOpen: false,
-        exercises: [ "Deadlift", "Squat", "Leg Curl" ]
-    },
-];
-    
-export function remove(i) {
-    this.routines.splice(i, 1);
-};
-export function add(newTitle, newPhoto, newExcer1, newExcer2, newExcer3) {
-    this.routines.push(
-        { 
-        title: newTitle,
-        photo: newPhoto,
-        isOpen: false,
-        exercises: [newExcer1, newExcer2, newExcer3]
-        }
-    )
-};
-export function adminModal () {
-    this.isForm = !this.isForm
-};
-export function logModal () {
-    this.isLog = !this.isLog
+    //POST request to add a new exercise log to State.Profile
+    async addExercise(date, type, duration, calories) {
+        await myFetch('/profile/addexercise', {date, type, duration, calories});
+    }
 }

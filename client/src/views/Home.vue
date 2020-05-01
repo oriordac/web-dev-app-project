@@ -47,7 +47,7 @@
                     <h1 class="title">{{ text }}</h1>
                 </div>
             </div>
-            <div v-for="photo in Photos" :key="photo.PhotoID" style="display: inline-block;">
+            <div v-for="photo in Photos.State.Photos" :key="photo.PhotoID" style="display: inline-block;">
                   <figure @click="updatePhoto(photo.PhotoImage); 
                                   updateText(photo.LocationName);" 
                           class="image is-128x128">
@@ -62,17 +62,25 @@
 
 <script>
 // @ is an alias to /sr
-import { Photos, updatePhoto, updateText } from "../models/Photos";
+import Photos from "../models/Photos";
 
 export default {
   data: () => ({
     Photos,
-    image: Photos[0].PhotoImage,
-    text: Photos[0].LocationName
+    image: Photos.State.Photos[0].PhotoImage,
+    text: Photos.State.Photos[0].LocationName
   }),
   methods: {
-    updatePhoto,
-    updateText
+    updatePhoto(photoImage) {
+      this.image = photoImage
+    },
+    updateText(LocationName) {
+      this.text = LocationName
+    }
+  },
+  created() {
+    Photos.Init()
   }
 }
 </script>
+

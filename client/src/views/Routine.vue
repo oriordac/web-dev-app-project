@@ -42,7 +42,7 @@
                 </div>
             </div>
             <!--Use v-for to generate all the routine cards-->
-            <div class="column is-one-quarter" v-for="(card,i) in routines" :key="card.title">
+            <div class="column is-one-quarter" v-for="(card,index) in Routines.State.Routines" :key="card.title">
                 <div class="card-image">
                 <div class="card">
                     <figure class="image is-square">
@@ -53,7 +53,7 @@
                     <p class="card-header-title">
                     {{card.title}}
                     </p>
-                    <a href="#" class="card-header-icon" aria-label="more options" @click="remove(i)" v-if="isAdmin">
+                    <a href="#" class="card-header-icon" aria-label="more options" @click="remove(index)" v-if="isAdmin">
                     <span class="icon">
                         <i class="delete" aria-hidden="true"></i>
                     </span>
@@ -79,11 +79,11 @@
     <!--Modal for the adminCard only. Form to push new routine card-->
     <AddRoutine :isForm="isForm" v-on:add-routine="add" v-on:close-admin="adminModal"></AddRoutine>
 
-    <!-- Modal to get to timer. This is for all cards besides the admin/add card-->
+    <!-- Modal to get to exercise log. This is for all cards besides the admin/add card-->
     <div class="modal" :class="{'is-active': isLog}">
         <div class="modal-background"></div>
         <div class="modal-content">
-            <Workout></Workout>
+            <Workout v-on:close-profile="logModal" v-on:add-exercise="addExercise"></Workout>
         </div>
         <button class="modal-close is-large" aria-label="close" @click="logModal"></button>
     </div>
@@ -95,11 +95,11 @@
 import AddRoutine from "@/components/AddRoutine.vue";
 import Workout from "@/components/Workout.vue";
 
-import { routines, remove, add, adminModal, logModal} from "../models/Routines";
+import Routines from "../models/Routines";
 
 export default {
     data: () => ({
-        routines,
+        Routines,
         //for adminCard and access to admin features
         adminCard: false,
         isAdmin: true,
@@ -109,15 +109,60 @@ export default {
         
     }),
     methods: {
-        remove,
-        add,
-        adminModal,
-        logModal
-
+        async remove(index) {
+            try{
+                await Routines.remove(index);
+                Routines.State.Routines.splice(index, 1);
+            } catch(error) {
+                this.error = error;
+            }
+        },
+        async add(newTitle, newPhoto, newExcer1, newExcer2, newExcer3) {
+            try{
+                await Routines.add(newTitle, newPhoto, newExcer1, newExcer2, newExcer3);
+                this.Routines.State.Routines.push(
+                { 
+                    title: newTitle,
+                    photo: newPhoto,
+                    isOpen: false,
+                    exercises: [newExcer1, newExcer2, newExcer3]
+                }
+            )
+            } catch(error) {
+                this.error = error
+            }
+        },
+        shortDateBuilder () {
+            let d = new Date();
+            let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+            let date = d.getDate();
+            let month = months[d.getMonth()];
+            let hours = d.getHours();
+            let minutes = d.getMinutes();
+            return `${hours}:${minutes} - ${date} ${month}`;
+        },
+        async addExercise(hours, minutes, type, calories) {
+            try {
+                let date = this.shortDateBuilder();
+                let duration = `${hours}:${minutes}`;
+                await Routines.addExercise(date, type, duration, calories);
+            } catch(error) {
+                this.error = error
+            }
+        },
+        adminModal () {
+            this.isForm = !this.isForm
+        },
+        logModal () {
+            this.isLog = !this.isLog
+        }
     },
     components: {
         Workout,
         AddRoutine
+    },
+    created() {
+        Routines.Init()
     }
 }
 </script>

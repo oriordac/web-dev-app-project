@@ -25,8 +25,8 @@
                 <div class="card-content">
                     <div class="media">
                         <div class="media-content">
-                            <p class="title is-4">Marcus Aurelius</p>
-                            <p class="subtitle is-6">@meditations</p>
+                            <p class="title is-4">{{ name }}</p>
+                            <p class="subtitle is-6">@{{ handle }}</p>
                         </div>
                         <div class="media-right">
                             <span class="button icon" @click="profileModal()">
@@ -100,17 +100,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><time datetime="2016-1-1">11:09 - 1 Jan 2016</time></td>
-                            <td>Hiking</td>
-                            <td>2:00</td>
-                            <td>350</td>
-                        </tr>
-                        <tr>
-                            <td><time datetime="2016-1-1">14:13 - 9 Jan 2016</time></td>
-                            <td>Running</td>
-                            <td>0:30</td>
-                            <td>120</td>
+                        <tr v-for="row in Profile.State.Exercises.Exercise" :key="row[0]">
+                            <!--date and time-->
+                            <td>{{ row[0] }}</td>
+                            <!--Type of exerxice ex. Running-->
+                            <td>{{ row[1] }}</td>
+                            <!--Length of the exercise-->
+                            <td>{{ row[2] }}</td>
+                            <!--Calories burnt-->
+                            <td>{{ row[3] }}</td>
                         </tr>
                     </tbody>
                     </table>
@@ -131,24 +129,28 @@
 
 <script>
 import UpdateProfile from "@/components/UpdateProfile.vue";
-import UpdateGoals from "@/components/UpdateGoals.vue"
+import UpdateGoals from "@/components/UpdateGoals.vue";
+import Profile from "@/models/Profile";
 
 export default {
     data: () => ({
-        image: "https://external-preview.redd.it/BQ9ia45GPitMXmDRYj-I4MkAySsaQ8y3pmNdyT0xp6s.jpg?auto=webp&s=a038bba7257999e84e8fd1d2a848d44f3f3b71af",
+        Profile,
         //use for modal
         isOpenProfile: false,
         isOpenGoal: false,
         //current statistics
-        description: "History enthusiast interested in hiking as a training regime to emulate the marches of Roman legionnaires",
-        age: 23,
-        height: 180,
-        weight: 200,
-        sex: "Male",
+        name: Profile.State.Profile.Name,
+        handle: Profile.State.Profile.Handle,
+        image: Profile.State.Profile.Image,
+        description: Profile.State.Profile.Description,
+        age: Profile.State.Profile.Age,
+        height: Profile.State.Profile.Height,
+        weight: Profile.State.Profile.Weight,
+        sex: Profile.State.Profile.Sex,
         //goals
-        focus: "Weight Lost",
-        goalweight: 190,
-        goalsteps: 5000,
+        focus: Profile.State.Goals.Focus,
+        goalweight: Profile.State.Goals.WeightGoal,
+        goalsteps: Profile.State.Goals.StepGoal,
     }),
     methods: {
         updateGoals (newfocus, newgoalweight, newgoalsteps) {
@@ -174,6 +176,9 @@ export default {
             return Math.abs(this.weight - this.goalweight)
         }
     },
+    created() {
+        Profile.Init()
+    },
     components: {
         UpdateProfile,
         UpdateGoals
@@ -184,3 +189,4 @@ export default {
 <style>
 
 </style>
+
