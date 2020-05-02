@@ -51,13 +51,13 @@
                       </tr>
                   </thead>
                   <tbody>
-                      <tr r v-for="x in todos" :key="x.name">
-                        <td>{{x.date}}</td>
-                        <td>{{x.name}}</td>
-                        <td>{{x.calorie}}</td>
-                        <td>{{x.protein}}</td>
-                        <td>{{x.carbs}}</td>
-                        <td>{{x.fat}}</td>
+                      <tr v-for="x in Calories.State.Calories.Calories" :key="x[1]">
+                        <td>{{ x[0] }}</td> <!--date-->
+                        <td>{{ x[1] }}</td> <!--name-->
+                        <td>{{ x[2] }}</td> <!--calories-->
+                        <td>{{ x[3] }}</td> <!--protein-->
+                        <td>{{ x[4] }}</td> <!--carbs-->
+                        <td>{{ x[5] }}</td> <!--fat-->
                       </tr>
                   </tbody>
                 </table>
@@ -78,45 +78,48 @@
 </template>
 
 <script>
-import { todos } from "../models/Calories";
+import Calories from "../models/Calories";
 import AddCalorie from "@/components/AddCalorie.vue";
 
 export default {
     
   data:() => ({
+    Calories,
     isOpen: false,
-    todos,
 
-    calorieCount: 0,
-    proteinCount: 0,
-    carbsCount: 0,
-    fatCount: 0,
+    calorieCount: Calories.State.Calories.CalorieCount,
+    proteinCount: Calories.State.Calories.ProteinCount,
+    carbsCount: Calories.State.Calories.CarbsCount,
+    fatCount: Calories.State.Calories.FatCount
   }),
   methods: {
       calorieModal() {
         this.isOpen = !this.isOpen;
       },
-      add(date, newFoodName, newCalorie, newProtein, newCarbs, newFat) {
-        this.todos.push(
-          { 
-            date: date,
-            name: newFoodName, 
-            calorie: newCalorie, 
-            protein: newProtein, 
-            carbs: newCarbs,
-            fat: newFat 
-          }
-        )
+      async add(date, newFoodName, newCalorie, newProtein, newCarbs, newFat) {
+        try {
+          await Calories.add(date, newFoodName, newCalorie, newProtein, newCarbs, newFat);
+        } catch (error) {
+          this.error = error;
+        }
       },
-      addnutrients(newCalorie, newProtein, newCarbs, newFat) {
-        this.calorieCount += newCalorie;
-        this.proteinCount += newProtein;
-        this.carbsCount += newCarbs;
-        this.fatCount += newFat;
+      async addnutrients(newCalorie, newProtein, newCarbs, newFat) {
+        try {
+          await Calories.addnutrients(newCalorie, newProtein, newCarbs, newFat);
+          this.calorieCount += newCalorie;
+          this.proteinCount += newProtein;
+          this.carbsCount += newCarbs;
+          this.fatCount += newFat;
+        } catch (error) {
+          this.error = error;
+        }
       }
   },
   components: {
     AddCalorie
+  },
+  created() {
+    Calories.Init()
   }
 }
 </script>
