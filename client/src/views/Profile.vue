@@ -115,7 +115,10 @@
                 </div>
                 <footer class="card-footer">
                         <router-link to="/routine" class="card-footer-item button">
-                            Add New Excercise
+                            Add New Strength Routine
+                        </router-link>
+                        <router-link to="/cardio" class="card-footer-item button">
+                            Add New Cardio Routine
                         </router-link>
                 </footer>
                 </div>
@@ -153,16 +156,30 @@ export default {
         goalsteps: Profile.State.Goals.StepGoal,
     }),
     methods: {
-        updateGoals (newfocus, newgoalweight, newgoalsteps) {
-            this.focus = newfocus,
-            this.goalweight = newgoalweight,
-            this.goalsteps = newgoalsteps
+        async updateGoals (newfocus, newgoalweight, newgoalsteps) {
+            try {
+                //POST request to update the server
+                await Profile.editGoals(newfocus, newgoalsteps, newgoalweight);
+                //Change the Vue instance
+                this.focus = newfocus,
+                this.goalweight = newgoalweight,
+                this.goalsteps = newgoalsteps 
+            } catch (error) {
+                this.error = error
+            }
         },
-        updateProfile (newdescription, newage, newheight, newweight) {
-            this.description = newdescription,
-            this.age = newage,
-            this.height = newheight,
-            this.weight = newweight
+        async updateProfile (newdescription, newage, newheight, newweight) {
+            try {
+                //POST request to update the server
+                await Profile.editProfile(newage, newheight, newweight, newdescription);
+                //Change the Vue instance
+                this.description = newdescription,
+                this.age = newage,
+                this.height = newheight,
+                this.weight = newweight
+            } catch (error) {
+                this.error = error;
+            }
         },
         goalModal () {
             this.isOpenGoal = !this.isOpenGoal;
