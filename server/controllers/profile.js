@@ -7,14 +7,16 @@ const router = express.Router();
 //Testing to see if tokens carries over after login
 router.use(function(req, res, next) {
     console.log({ userId: req.userId })
+    req.currentuser = profile.getUser(req.userId)
+    console.log({ currentUserId: req.currentuser })
     next();
 });
 
 router
     .get("/", (req, res) => res.send({
-        Profile: profile.Profile[req.userId],
-        Goals: profile.Goals[req.userId],
-        Exercises: profile.Exercises[req.userId]
+        Profile: profile.Profile[req.currentuser],
+        Goals: profile.Goals[req.currentuser],
+        Exercises: profile.Exercises[req.currentuser]
     }) )
     .post('/editprofile', (req, res) => res.send(
         profile.editProfile(req.userId, req.body.age, req.body.height, req.body.weight, req.body.description)

@@ -8,7 +8,8 @@ const Profile = [
         Height: 180, 
         Weight: 200, 
         Sex: "Male", 
-        Description:"Member of the Avengers. Part-time member of the Guardians of the Galaxy"},
+        Description:"Member of the Avengers. Part-time member of the Guardians of the Galaxy"
+    },
     {
         UserId: 1, 
         Name: "Odin Allfather", 
@@ -78,7 +79,12 @@ function addExercise(userid, date, type, duration, calories) {
     return true;
 }
 
+function getUser(token) {
+    //we want to use the bearer token to find the corresponding userId property in Users
+    return Profile.findIndex(x=> x.UserId == token)
+}
+
 module.exports = {
     Profile, Goals, Exercises,
-    editProfile, editGoals, addExercise
+    editProfile, editGoals, addExercise, getUser
 }
