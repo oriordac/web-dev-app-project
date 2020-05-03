@@ -7,6 +7,7 @@ const routinesController = require('./controllers/routines');
 const profileController = require('./controllers/profile');
 const socialController = require('./controllers/social');
 const caloriesController = require('./controllers/calories');
+const liquidController = require('./controllers/liquid');
 
 const app = express();
 const port = 3000;
@@ -36,6 +37,7 @@ app
     .use('/profile', profileController)
     .use('/social', socialController)
     .use('/calories', caloriesController)
+    .use('/liquid', liquidController)
 
     /*.use((req, res) => {
         const homePath = path.join(__dirname , '/../dist/index.html');

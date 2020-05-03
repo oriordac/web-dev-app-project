@@ -55,20 +55,41 @@
 </template>
 
 <script>
+import Liquid from "@/models/Liquid";
+
 export default {
     data: () => ({
-        count: 0
+        Liquid,
+        count: Liquid.State.Liquid.Water
     }),
     methods: {
-        add8() {
-            this.count += 8;
+        async add8() {
+            try {
+               await Liquid.add8();
+               this.count += 8; 
+            } catch (error) {
+                this.error = error;
+            }
         },
-        add16() {
-            this.count += 16;
+        async add16() {
+            try {
+               await Liquid.add16();
+               this.count += 16; 
+            } catch (error) {
+                this.error = error;
+            }
         },
-        add32() {
-            this.count += 32;
+        async add32() {
+            try {
+               await Liquid.add32();
+               this.count += 32; 
+            } catch (error) {
+                this.error = error;
+            }
         }
+    },
+    created() {
+        Liquid.Init()
     }
 }
 </script>
