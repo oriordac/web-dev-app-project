@@ -7,7 +7,6 @@ const Profile = [
         Age: 20, 
         Height: 180, 
         Weight: 200, 
-        Sex: "Male", 
         Description:"Member of the Avengers. Part-time member of the Guardians of the Galaxy"
     },
     {
@@ -18,8 +17,27 @@ const Profile = [
         Age: 40, 
         Height: 170, 
         Weight: 170, 
-        Sex: "Male",
         Description: "Made Eye-patches fashionable"
+    },
+    {
+        UserId: 2, 
+        Name: "Valkyrie", 
+        Handle: "valhalla",
+        Image: "http://cs.newpaltz.edu/~oriordac1/assets/valkyrie.jpg",
+        Age: 25, 
+        Height: 165, 
+        Weight: 120,
+        Description: "Parties all night within the halls of Valhalla"
+    },
+    {
+        UserId: 3, 
+        Name: "Loki Laufeyson", 
+        Handle: "silvertongue",
+        Image: "http://cs.newpaltz.edu/~oriordac1/assets/loki.jpg",
+        Age: 20, 
+        Height: 172, 
+        Weight: 150, 
+        Description: "Plotting revenge on all of my enemies"
     }
 ];
 
@@ -35,6 +53,18 @@ const Goals = [
         Focus: "Maintence",
         StepGoal: 4000,
         WeightGoal: 170
+    },
+    {
+        UserId: 3,
+        Focus: "Strength Training",
+        StepGoal: 7000,
+        WeightGoal: 125
+    },
+    {
+        UserId: 4,
+        Focus: "Cardio Training",
+        StepGoal: 10000,
+        WeightGoal: 150
     }
 ];
 
@@ -52,7 +82,21 @@ const Exercises = [
             ["16:00 - 20 Apr", "Back", "1:00", 225],
             ["07:30 - 19 Apr", "Rowing", "2:00", 350]
         ]
-    }    
+    },
+    {
+        UserId: 2,
+        Exercise: [
+            ["16:00 - 20 Apr", "Back", "1:00", 225],
+            ["07:30 - 19 Apr", "Rowing", "2:00", 350]
+        ]
+    },
+    {
+        UserId: 3,
+        Exercise: [
+            ["16:00 - 20 Apr", "Back", "1:00", 225],
+            ["07:30 - 19 Apr", "Rowing", "2:00", 350]
+        ]
+    }     
 ];
 
 function editProfile(userid, newAge, newHeight, newWeight, newDescription) {

@@ -3,7 +3,6 @@ import VueRouter from 'vue-router'
 
 import Home from '../views/Home.vue'
 import About from '../views/About.vue'
-import Test from '../views/Test.vue'
 import Login from '../views/Login.vue'
 import Signup from '../views/Signup.vue'
 import Profile from '../views/Profile.vue'
@@ -15,7 +14,6 @@ Vue.use(VueRouter)
 const routes = [
   {path: '/', name: 'Home', component: Home},
   {path: '/about', name: 'About', component: About},
-  {path: '/test', name: 'Test', component: Test},
   {path: '/login', name: 'Login', component: Login},
   {path: '/signup', name: 'Signup', component: Signup},
   {path: '/profile', name: 'Profile', component: Profile, meta: { isSecret: true }},

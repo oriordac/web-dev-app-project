@@ -50,8 +50,9 @@
 
                     <div class="field">
                         <div class="control">
-                            <button class="button is-danger" @click="addExercise">Submit</button>
+                            <button class="button is-danger" @click="addExercise();isSubmitted()">Submit</button>
                         </div>
+                        <p v-if="Submitted">Submitted!</p>
                     </div>
 
                     <Timer v-on:send-time="setTime"></Timer>
@@ -85,7 +86,9 @@ export default {
         type: "",
         calories: 0,
         hours: "",
-        minutes: ""
+        minutes: "",
+        //Inform user that POST submission was successful
+        Submitted: false
     }),
     methods: {
          //For weather portion
@@ -130,6 +133,9 @@ export default {
             } catch(error) {
                 this.error = error
             }
+        },
+        isSubmitted() {
+            this.Submitted = !this.Submitted
         }
     }
 }

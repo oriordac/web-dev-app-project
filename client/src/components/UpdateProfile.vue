@@ -34,20 +34,6 @@
                     <input class="input" type="number" v-model.number="newweight">
                 </div>
             </div>
-
-            <div class="field">
-                <label class="label">Sex</label>
-                <div class="control">
-                    <label class="radio">
-                    <input type="radio" name="question" checked disabled>
-                    Male
-                    </label>
-                    <label class="radio">
-                    <input type="radio" name="question" disabled>
-                    Female
-                    </label>
-                </div>
-            </div>
             
             <div class="field is-grouped">
                 <div class="control">

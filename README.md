@@ -1,4 +1,4 @@
-# Salve Amici!
+# Salvete Amici!
 
 ![A photo of Conor O'Riordan](profile_image.jpg)
 

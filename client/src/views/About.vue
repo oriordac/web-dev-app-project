@@ -98,7 +98,7 @@ export default {
       {
         ID: 2,
         icon: "fas fa-tint",
-        title: "Water Intake Tracker"
+        title: "Liquid Tracker"
       },
       {
         ID: 3,
@@ -108,7 +108,7 @@ export default {
       {
         ID: 4,
         icon: "fas fa-cloud-sun",
-        title: "Local Weather Reports (Coming Soon)"
+        title: "Local Weather"
       },
     ]
   })

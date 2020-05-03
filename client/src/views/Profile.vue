@@ -18,7 +18,7 @@
             <div class="column is-one-third">
                 <div class="card">
                 <div class="card-image">
-                    <figure class="image is-4by3">
+                    <figure class="image is-square">
                     <img :src="image" alt="Placeholder image">
                     </figure>
                 </div>
@@ -149,7 +149,6 @@ export default {
         age: Profile.State.Profile.Age,
         height: Profile.State.Profile.Height,
         weight: Profile.State.Profile.Weight,
-        sex: Profile.State.Profile.Sex,
         //goals
         focus: Profile.State.Goals.Focus,
         goalweight: Profile.State.Goals.WeightGoal,
@@ -157,29 +156,16 @@ export default {
     }),
     methods: {
         async updateGoals (newfocus, newgoalweight, newgoalsteps) {
-            try {
-                //POST request to update the server
-                await Profile.editGoals(newfocus, newgoalsteps, newgoalweight);
-                //Change the Vue instance
-                this.focus = newfocus,
-                this.goalweight = newgoalweight,
-                this.goalsteps = newgoalsteps 
-            } catch (error) {
-                this.error = error
-            }
+            //Modal changes Server. This changes the Vue instance
+            this.focus = newfocus,
+            this.goalweight = newgoalweight,
+            this.goalsteps = newgoalsteps 
         },
-        async updateProfile (newdescription, newage, newheight, newweight) {
-            try {
-                //POST request to update the server
-                await Profile.editProfile(newage, newheight, newweight, newdescription);
-                //Change the Vue instance
-                this.description = newdescription,
-                this.age = newage,
-                this.height = newheight,
-                this.weight = newweight
-            } catch (error) {
-                this.error = error;
-            }
+        updateProfile (newdescription, newage, newheight, newweight) {
+            this.description = newdescription,
+            this.age = newage,
+            this.height = newheight,
+            this.weight = newweight
         },
         goalModal () {
             this.isOpenGoal = !this.isOpenGoal;
