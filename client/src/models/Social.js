@@ -5,7 +5,7 @@ export default {
     Init(){
         myFetch('/social')
             .then(x=> { 
-                this.State = {...x, Social: x.Social.map(r => ({...r, Liked: false}) )};
+                this.State = x
                 console.log(x);
             });
     },
@@ -13,12 +13,14 @@ export default {
     async newPost(text) {
         await myFetch('/social/newpost', {text});
     },
+    async newComment(index, text) {
+        await myFetch('/social/newcomment', {index, text});
+    },
     //POST request to like a post
     async likePost(index) {
-        await myFetch('/social/upvote', {index});
+        await myFetch('/social/likepost', {index});
     },
-    //POST request to dislike a post
-    async dislikePost(index) {
-        await myFetch('/social/downvote', {index});
+    async likeComment(postindex, commentindex) {
+        await myFetch('/social/likecomment', {postindex, commentindex});
     }
 }
