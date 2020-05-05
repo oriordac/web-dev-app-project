@@ -6,6 +6,14 @@ const Liquid = [
     {
         UserId: 1,
         Water: 0
+    },
+    {
+        UserId: 2,
+        Water: 0
+    },
+    {
+        UserId: 3,
+        Water: 0
     }
 ];
 

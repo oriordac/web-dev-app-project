@@ -29,7 +29,7 @@ function add(userid, date, newFoodName, newCalorie, newProtein, newCarbs, newFat
         date, newFoodName, newCalorie, newProtein, newCarbs, newFat 
       ]
     );
-    return eater.Calories[Calories.length - 1];
+    return true;
 };
 
 function addnutrients(userid, newCalorie, newProtein, newCarbs, newFat) {
