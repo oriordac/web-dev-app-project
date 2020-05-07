@@ -59,6 +59,7 @@ export default {
                 Upvote: 0,
                 Liked: []
             });
+            Social.State.Social[this.i].ReplyCount++;
             this.$emit('close-newcomment');
         },
         closePost() {

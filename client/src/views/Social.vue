@@ -181,9 +181,14 @@ export default {
         this.error = error;
       }
       //Update the Vue instance
-      Social.State.Social[index].Upvote++;
-      Social.State.Social[index].isILiked = true;
-      Social.State.Social[index].whoLikedIt = this.name;
+      if(!Social.State.Social[index].isILiked) {
+        Social.State.Social[index].Upvote++;
+        Social.State.Social[index].isILiked = true;
+        Social.State.Social[index].whoLikedIt = this.name;
+      } else {
+        Social.State.Social[index].Upvote--;
+        Social.State.Social[index].isILiked = false;
+      }
     },
     async likeComment(postindex, commentindex) {
       try {
@@ -192,9 +197,14 @@ export default {
         this.error = error;
       }
       //Update the Vue instance
-      Social.State.Social[postindex].Comment[commentindex].Upvote++;
-      Social.State.Social[postindex].Comment[commentindex].isILiked = true;
-      Social.State.Social[postindex].Comment[commentindex].whoLikedIt = this.name;
+      if(!Social.State.Social[postindex].Comment[commentindex].isILiked) {
+        Social.State.Social[postindex].Comment[commentindex].Upvote++;
+        Social.State.Social[postindex].Comment[commentindex].isILiked = true;
+        Social.State.Social[postindex].Comment[commentindex].whoLikedIt = this.name;
+      } else {
+        Social.State.Social[postindex].Comment[commentindex].Upvote--;
+        Social.State.Social[postindex].Comment[commentindex].isILiked = false;
+      }
     },
     showComments(i) {
       Social.State.Social[i].showComments = !Social.State.Social[i].showComments;
