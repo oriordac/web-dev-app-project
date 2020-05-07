@@ -9,9 +9,9 @@ const Posts = [
         Image: "http://cs.newpaltz.edu/~oriordac1/assets/thorodinson.jpg",
         Text: "I love hiking in Jotunheim.",
         Timestamp: "9:00 - 26 Apr",
-        Upvote: 1,
+        Upvote: 2,
         ReplyCount: 1,
-        Liked: [{UserId: 1}],
+        Liked: [{UserId: 1}, {UserId: 2}],
         Comment: [
             {
                 UserId: 3, 

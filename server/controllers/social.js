@@ -1,11 +1,18 @@
 const express = require('express');
 
 const social = require('../models/Social');
+const profile = require('../models/Profile');
 
 const router = express.Router();
 
+router.use(function(req, res, next) {
+    req.currentuser = profile.getUser(req.userId)
+    next();
+});
+
 router
     .get("/", (req, res) => res.send({
+        Profile: profile.Profile[req.currentuser],
         Social: social.Posts.map(x => ({
             ...x,
             isILiked: x.Liked.some(y => y.UserId == req.userId),

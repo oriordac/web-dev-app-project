@@ -39,11 +39,7 @@ export default {
     }),
     methods: {
         async post() {
-            try {
-                await Social.newPost(this.text);
-            } catch (error) {
-                this.error = error;    
-            }
+            this.$emit('new-post', this.text);
             this.$emit('close-newpost');
         },
         closePost() {

@@ -35,7 +35,12 @@ export default {
     props: ["isOpenNewComment", "i"],
     data: () => ({
         Social,
-        text: ""
+        text: "",
+        //current user information
+        userid: Social.State.Profile.UserId,
+        name: Social.State.Profile.Name,
+        image: Social.State.Profile.Image,
+        handle: Social.State.Profile.Handle
     }),
     methods: {
         async post() {
@@ -44,10 +49,32 @@ export default {
             } catch (error) {
                 this.error = error;    
             }
+            Social.State.Social[this.i].Comment.push({
+                UserId: this.userid,
+                Name: this.name,
+                Handle: this.handle,
+                Image: this.image,
+                Text: this.text,
+                Timestamp: this.shortDateBuilder(),
+                Upvote: 0,
+                Liked: []
+            });
             this.$emit('close-newcomment');
         },
         closePost() {
             this.$emit('close-newcomment');
+        },
+        padTime(time) {
+            return (time < 10 ? '0' : '') + time;
+        },
+        shortDateBuilder() {
+            const d = new Date();
+            const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+            const date = d.getDate();
+            const month = months[d.getMonth()];
+            const hour = d.getHours();
+            const minute = this.padTime(d.getMinutes());
+            return `${hour}:${minute} - ${date} ${month}`;
         }
     }
 }

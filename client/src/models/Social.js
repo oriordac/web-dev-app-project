@@ -5,7 +5,7 @@ export default {
     Init(){
         myFetch('/social')
             .then(x=> { 
-                this.State = x
+                this.State = {...x, Social: x.Social.map(r => ({...r, showComments: false}) )}
                 console.log(x);
             });
     },
