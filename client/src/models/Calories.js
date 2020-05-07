@@ -5,7 +5,7 @@ export default {
     Init() {
         myFetch('/calories')
             .then(x=> { 
-                this.State = x;
+                this.State = {...x};
                 console.log(x);
             });
     },

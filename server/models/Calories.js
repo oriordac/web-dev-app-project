@@ -19,6 +19,26 @@ const Calories = [
         ProteinCount: 0,
         CarbsCount: 0,
         FatCount: 0
+    },
+    {
+        UserId: 2,
+        Calories: [
+            ["18 April 2020", "Sample", 0, 0, 0, 0]
+        ],
+        CalorieCount: 0,
+        ProteinCount: 0,
+        CarbsCount: 0,
+        FatCount: 0
+    },
+    {
+        UserId: 3,
+        Calories: [
+            ["18 April 2020", "Sample", 0, 0, 0, 0]
+        ],
+        CalorieCount: 0,
+        ProteinCount: 0,
+        CarbsCount: 0,
+        FatCount: 0
     }
 ]
 

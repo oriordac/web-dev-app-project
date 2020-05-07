@@ -102,6 +102,7 @@ export default {
         } catch (error) {
           this.error = error;
         }
+        Calories.State.Calories.Calories.push([date, newFoodName, newCalorie, newProtein, newCarbs, newFat]);
       },
       async addnutrients(newCalorie, newProtein, newCarbs, newFat) {
         try {
