@@ -1,5 +1,5 @@
 //Is there a way to get only the array from this model?
-const profile = require('../models/Profile');
+const profile = require('./Profile');
 
 const Posts = [
     {
@@ -11,9 +11,10 @@ const Posts = [
         Timestamp: "9:00 - 26 Apr",
         Upvote: 1,
         ReplyCount: 1,
+        Liked: [{UserId: 1}],
         Comment: [
             {
-                UserId: 0, 
+                UserId: 3, 
                 Name: "Loki Laufeyson", 
                 Handle: "silvertongue", 
                 Image: "http://cs.newpaltz.edu/~oriordac1/assets/loki.jpg",
@@ -22,10 +23,6 @@ const Posts = [
                 Upvote: 0,
                 Liked: []
             }
-        ],
-        //Use this array to determine who liked the post. They should know that they liked it by a color change
-        Liked: [
-            {UserId: 1}
         ]
     }
 ];
@@ -58,8 +55,8 @@ function newPost(userid, text) {
         Timestamp: timestamp,
         Upvote: 0,
         ReplyCount: 0,
-        Comment: [],
-        Liked: []
+        Liked: [],
+        Comment: []
     });
     return true;
 };
@@ -114,9 +111,63 @@ function likeComment(userid, postindex, commentindex) {
         comment.Liked.splice(check, 1);
         return true;
     }
-}
+};
+function likedThePost(userid, index) {
+    //get the array of users who liked a post
+    const post = Posts[index].Liked;
+    const fan = profile.Profile.find(x=> x.UserId == userid);
+    //see if the current user liked the post
+    const bool = post.findIndex(x => x.UserId == fan.UserId);
+    //console.log(bool);
+    //if bool is negative, then the user has not liked the post
+    if(bool >= 0) {
+        return true;
+    } else {
+        return false;
+    }
+};
+function likedTheComment(userid, postindex, commentindex) {
+    //get the array of users who liked a post
+    const comment = Posts[postindex].Comment[commentindex].Liked;
+    const fan = profile.Profile.find(x=> x.UserId == userid);
+    //see if the current user liked the post
+    const bool = comment.findIndex(x => x.UserId == fan.UserId);
+    //if bool is negative, then the user has not liked the post
+    if(bool >= 0) {
+        return true;
+    } else {
+        return false;
+    }
+};
+function getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+};
+function whoLikedIt(post) {
+    //get the array of users who liked a post
+    const postfans = post.Liked;
+    //randomly pick a user who liked the post
+    const randomfan = postfans[getRandomInt(postfans.length)];
+    if(!randomfan) {
+        return false;
+    } else {
+        const fan = profile.Profile.find(x=> x.UserId == randomfan.UserId);
+        return fan.Name;
+    }
+};
+function whoLikedComment(post, index) {
+    //get the array of users who liked a comment
+    const commentfans = post.Comment[index].Liked;
+    //randomly pick a user who liked the post
+    const randomfan = commentfans[getRandomInt(postfans.length)];
+    if(!randomfan) {
+        return false;
+    } else {
+        const fan = profile.Profile.find(x=> x.UserId == randomfan.UserId);
+        return fan.Name;
+    }
+};
 
 module.exports = {
     Posts,
-    newPost, newComment, likePost, likeComment
+    newPost, newComment, likePost, likeComment, whoLikedIt, whoLikedComment
 }

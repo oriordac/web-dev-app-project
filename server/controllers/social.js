@@ -6,7 +6,16 @@ const router = express.Router();
 
 router
     .get("/", (req, res) => res.send({
-        Social: social.Posts
+        Social: social.Posts.map(x => ({
+            ...x,
+            isILiked: x.Liked.some(y => y.UserId == req.userId),
+            whoLikedIt: social.whoLikedIt(x),
+            Comment: x.Comment.map(a => ({
+                ...a, 
+                isILiked: a.Liked.some(b => b.UserId == req.userId),
+                whoLikedIt: social.whoLikedIt(a)
+            }) )
+        }) )
     }) )
     .post('/newpost', (req, res) => res.send(
         //pass the token and the text for the post

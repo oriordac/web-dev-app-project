@@ -43,7 +43,7 @@
     </div>
     <nav class="level is-mobile">
         <div class="level-left">
-          <a class="level-item" @click="upvote(i)">
+          <a class="level-item" @click="upvote(i)" :class="{liked: post.isILiked}">
             <span class="icon is-small"><i class="fas fa-heart"></i></span>
           </a>
           <p class="level-item">{{ post.Upvote }}</p>
@@ -54,6 +54,7 @@
           <a class="level-item" @click="newCommentModal();setMainPostIndex(i)">
             <span class="icon is-small"><i class="fas fa-reply"></i></span>
           </a>
+          <p class="level-item is-size-7" v-if="post.Upvote">{{ post.whoLikedIt }} <span v-if="post.Upvote > 2">and {{ post.Upvote - 1 }} others</span> liked this</p>
         </div>
     </nav>
 
@@ -75,10 +76,11 @@
       <nav class="level is-mobile">
           <div class="level-left">
             <!-- pass "i" for the main post index and "index" for the comment index-->
-            <a class="level-item" @click="likeComment(i, index)">
+            <a class="level-item" @click="likeComment(i, index)" :class="{liked: comment.isILiked}">
               <span class="icon is-small"><i class="fas fa-heart"></i></span>
             </a>
             <p class="level-item">{{ comment.Upvote }}</p>
+             <p class="level-item is-size-7" v-if="comment.Upvote">{{ comment.whoLikedIt }} <span v-if="comment.Upvote > 2"> and {{ comment.Upvote - 1 }} others</span> liked this</p>
           </div>
       </nav>
     </div>
@@ -114,7 +116,7 @@ export default {
     Social,
     isOpenNewPost: false,
     isOpenNewComment: false,
-    mainPostIndex: 0
+    mainPostIndex: 0,
   }),
   methods: {
     newPostModal() {
@@ -150,8 +152,5 @@ export default {
 <style>
   .liked {
     color: red;
-  }
-  .disliked {
-    color: black;
   }
 </style>
