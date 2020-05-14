@@ -4,13 +4,28 @@
     <div class="modal-content">
         <div class="box">
             
-            <div class="field">
+            <!--<div class="field">
             <label class="label">Name</label>
             <div class="control">
                 <input class="input" type="text" placeholder="Apple" v-model="newFoodName">
             </div>
             <p class="help">Enter the name of food/drink</p>
-            </div>
+            </div> -->
+
+            <p class="content"><b>Selected:</b> {{ selected }}</p>
+            <b-field label="Find a JS framework">
+                <b-autocomplete
+                    rounded
+                    v-model="name"
+                    :data="filteredDataArray"
+                    placeholder="e.g. jQuery"
+                    icon="magnify"
+                    clearable
+                    @typing="filter"
+                    @select="option => selected = option">
+                    <template slot="empty">No results found</template>
+                </b-autocomplete>
+            </b-field>
 
             <div class="field">
             <label class="label">Calories</label>
@@ -60,17 +75,43 @@
 </template>
 
 <script>
+import Calories from "../models/Calories"
 export default {
     props: ["isOpen"],
     data: () => ({
+        Calories,
         //v-model elements to add item to table
         newFoodName: "",
         newCalorie: 0,
         newProtein: 0,
         newCarbs: 0,
         newFat: 0,
+        data: Calories.State.FoodList,
+        selected: null,
+        name: "",
+        isFetching: false
     }),
+    computed: {
+        filteredDataArray() {
+            return this.data.filter((option) => {
+                return option
+                    .toString()
+                    .toLowerCase()
+                    .indexOf(this.name.toLowerCase()) >= 0
+            })
+        }
+    },
+    created() {
+        Calories.Init()
+    },
     methods: {
+        async filter() {
+            try {
+                await Calories.filter(this.name);
+            } catch (error) {
+                this.error=error;
+            }
+        },
         clear() {
             this.newFoodName = "",
             this.newCalorie = 0,

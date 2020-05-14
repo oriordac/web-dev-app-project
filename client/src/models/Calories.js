@@ -16,5 +16,10 @@ export default {
     //POST request to add edit nutirents on display
     async addnutrients(newCalorie, newProtein, newCarbs, newFat) {
         await myFetch('/calories/addnutrients', {newCalorie, newProtein, newCarbs, newFat});
+        console.log("success")
+    },
+    //GET request for Final
+    async filter() {
+        await myFetch(`/calories/`);
     }
 }

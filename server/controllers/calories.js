@@ -11,8 +11,12 @@ router.use(function(req, res, next) {
 
 router
     .get("/", (req, res) => res.send({
-        Calories: calories.Calories[req.currentuser]
+        Calories: calories.Calories[req.currentuser],
+        FoodList: calories.filteredFoodListArray(req.query.name)
     }) )
+    /*get("/?name=", (req, res) => res.send({
+        FoodList: calories.filteredFoodListArray(req.query.name)
+    })) */
     .post("/add", (req, res) => res.send(
         //remember to change userid later to safer method
         calories.add(req.userId, req.body.date, req.body.newFoodName, req.body.newCalorie, req.body.newProtein, req.body.newCarbs, req.body.newFat)
