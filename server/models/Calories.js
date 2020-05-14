@@ -56,15 +56,6 @@ const FoodList = [
     "Pizza", "Apple", "Banana", "Ice Cream", "Steak", "Cereal", "Salmon", "Pineapple", "Soda", "Toast"
 ];
 
-function filteredFoodListArray(name) {
-    return FoodList.filter((option) => {
-        return option
-            .toString()
-            .toLowerCase()
-            .indexOf(name.toLowerCase()) >= 0
-    })
-}
-
 function addnutrients(userid, newCalorie, newProtein, newCarbs, newFat) {
     const eater = Calories.find(x => x.UserId == userid);
     eater.CalorieCount += newCalorie;
@@ -81,5 +72,5 @@ function getUser(token) {
 
 module.exports = {
     Calories, FoodList,
-    add, addnutrients, getUser, filteredFoodListArray
+    add, addnutrients, getUser
 }

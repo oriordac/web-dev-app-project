@@ -12,20 +12,33 @@
             <p class="help">Enter the name of food/drink</p>
             </div> -->
 
-            <p class="content"><b>Selected:</b> {{ selected }}</p>
+            <!--<p class="content"><b>Selected:</b> {{ selected }}</p>
             <b-field label="Find a JS framework">
                 <b-autocomplete
                     rounded
                     v-model="name"
                     :data="filteredDataArray"
-                    placeholder="e.g. jQuery"
+                    placeholder="Search Food"
                     icon="magnify"
                     clearable
                     @typing="filter"
                     @select="option => selected = option">
                     <template slot="empty">No results found</template>
                 </b-autocomplete>
-            </b-field>
+            </b-field> -->
+
+        <p class="content"><b>Selected:</b> {{ selected }}</p>
+
+        <b-field label="Find common foods">
+            <b-autocomplete
+                :data="data"
+                placeholder="Apple"
+                field="title"
+                :loading="isFetching"
+                @typing="getAsyncData"
+                @select="option => selected = option">
+            </b-autocomplete>
+        </b-field>
 
             <div class="field">
             <label class="label">Calories</label>
@@ -76,6 +89,8 @@
 
 <script>
 import Calories from "../models/Calories"
+import debounce from 'lodash/debounce'
+
 export default {
     props: ["isOpen"],
     data: () => ({
@@ -86,9 +101,8 @@ export default {
         newProtein: 0,
         newCarbs: 0,
         newFat: 0,
-        data: Calories.State.FoodList,
+        data: [],
         selected: null,
-        name: "",
         isFetching: false
     }),
     computed: {
@@ -105,13 +119,19 @@ export default {
         Calories.Init()
     },
     methods: {
-        async filter() {
-            try {
-                await Calories.filter(this.name);
-            } catch (error) {
-                this.error=error;
+    getAsyncData: debounce(function (name) {
+            if (!name.length) {
+                this.data = []
+                return
             }
-        },
+            this.isFetching = true
+            Calories.filter(name)
+                .then(x =>  {
+                    console.log(x);
+                    this.data = [x];
+                    this.isFetching = false;
+                })
+        }, 500),
         clear() {
             this.newFoodName = "",
             this.newCalorie = 0,
