@@ -1,9 +1,54 @@
-# Salvete Amici!
+# Bewegen - Fitness App
 
-![A photo of Conor O'Riordan](profile_image.jpg)
+## Table of contents
+* [General info](#general-info)
+* [Technologies](#technologies)
+* [Setup](#setup)
 
-My name is Conor O’Riordan, and I am a graduate student at SUNY New Paltz for computer science. When I was an undergraduate here at New Paltz, I studied mathematics and history along with a minor in German. In several of my math courses, we used Python to model topics such as normalization in linear algebra or random walks in probability and statistics; however, this was my only prior exposure to computer science.
+## General Info
+This project was a semester-long assignment for my Web Development class, instructed by Rabbi Moshe Plotkin.
+This fitness app was inspired by my interest in German culture; the themes comes from Germans' obsession with hiking.
 
-Since starting the program, I have created a MySQL database modeling the Julio-Claudian family tree from antiquity and designed a website for my [senior history seminar paper](https://www.newpaltz.edu/history/bestseminarpapers "A link to the history department's website"). I have taken Programming and Data Structures, Computer Systems, and Database Design; I am currently enrolled in Introduction to Cyber Security, Web Development, and Cloud Systems this semester.
+The app has three main features - a profile page, exercise routines, and a social media section.
+A user can update personal information and goals accordingly; a table of recent exercises is present.
+The exercise routine pages have preset exercises to choose from, but admins can add/delete routines.
+The Open WeatherAPI was used for users to check the weather, and components consisting of timers are available to track progress between sets or resting intervals.
+A social media page resembling Twitter's design interface was implemented allowing users to post and comment on each other's post.
+	
+## Technologies
+Project is created with:
+* VueJS
+* Bulma
+* Express & NodeJS
+	
+## Setup
+The project was built through VueCLI; below is the standard setup instructions provided by the Vue documentation.
+```
+npm install
+```
+### Front-end & Vue
 
-I hope that this class, and this masters’ program as a whole, will wed my love for math and history under one profession. I have enjoyed building simple websites in the past, and I enjoy designing the layout and coordinating the aesthetics due to my interest in the arts. I am looking forward to building apps, for one of my ideal career paths is creating interactive apps and websites for heritage and archeological sites. The pedagogical opportunities of such specialized apps are often underappreciated; I often downloaded German tourist apps to research German monuments for my history papers. If we have time this semester, I look forward to accessing database from a website, specifically in the pursuit of web development for educational purposes or archival research.
+#### Go into the client directory
+```
+cd client
+```
+#### Compiles and hot-reloads for development
+```
+npm run serve
+```
+#### Compiles and minifies for production
+```
+npm run build
+```
+### Back-end & Express
+Server exist in the root directory
+```
+npm run start
+```
+Hot-reload the server using Nodemon
+```
+npm run dev
+```
+---
+### Vue Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
