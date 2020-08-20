@@ -6,7 +6,7 @@
 * [Setup](#setup)
 
 ## General Info
-This project was a semester-long assignment for my Web Development class, instructed by Rabbi Moshe Plotkin.
+This project was a semester-long assignment for my Web Server and Development class, instructed by Rabbi Moshe Plotkin.
 This fitness app was inspired by my interest in German culture; the themes comes from Germans' obsession with hiking.
 
 The app has three main features - a profile page, exercise routines, and a social media section.
@@ -41,7 +41,7 @@ npm run serve
 npm run build
 ```
 ### Back-end & Express
-Server exist in the root directory
+Server exists in the root directory
 ```
 npm run start
 ```
