@@ -56,7 +56,7 @@
         <div class="navbar-end">
             <div class="navbar-item">
                 <div class="buttons">
-                    <router-link to="/signup" class="button is-primary" active-class="is-current">Sign up</router-link>
+                    <!-- <router-link to="/signup" class="button is-primary" active-class="is-current">Sign up</router-link> -->
                     <router-link to="/login" class="button is-light" active-class="is-current">Log in</router-link>
                 </div>
             </div>

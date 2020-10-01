@@ -4,11 +4,9 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import About from '../views/About.vue'
 import Login from '../views/Login.vue'
-import Signup from '../views/Signup.vue'
+// import Signup from '../views/Signup.vue'
 import Profile from '../views/Profile.vue'
 import Routine from '../views/Routine.vue'
-
-import Final from '../views/Final.vue'
 
 import { CurrentUser } from '../models/Users'
 Vue.use(VueRouter)
@@ -20,8 +18,6 @@ const routes = [
   {path: '/signup', name: 'Signup', component: Signup},
   {path: '/profile', name: 'Profile', component: Profile, meta: { isSecret: true }},
   {path: '/routine', name: 'Rountine', component: Routine, meta: { isSecret: true }},
-
-  {path: '/final', name: 'Final', component: Final},
   
   {path: '/liquid', name: 'Liquid', component: () => import(/* webpackChunkName: "about" */ '../views/Liquid.vue'), meta: { isSecret: true }},
   {path: '/calorie', name: 'Calorie', component: () => import(/* webpackChunkName: "about" */ '../views/Calorie.vue'), meta: { isSecret: true }},
