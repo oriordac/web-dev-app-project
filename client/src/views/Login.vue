@@ -37,9 +37,7 @@
                     </div>
                     </div>
 
-                    <hr>
-
-                    <div class="field">
+                    <!-- <div class="field">
                         <div class="control has-icon-left">
                             <button class="button is-danger" @click.prevent="google_login">
                             <span class="icon is-small is-left">
@@ -63,7 +61,7 @@
                             </span>
                             </button>
                         </div>
-                    </div>
+                    </div> -->
 
                     <img :src="profile_picture" v-if="profile_picture" />
 
@@ -75,10 +73,10 @@
 </template>
 
 <script>
-import { Login } from "../models/Users";
-const GOOGLE_CLIENT_ID = "62045495566-nf7dp1ife3i57v9gqg514bsiu3peroq8.apps.googleusercontent.com";
-const FACEBOOK_CLIENT_ID = "879616965840226";
-let auth2 = null;
+// import { Login } from "../models/Users";
+// const GOOGLE_CLIENT_ID = "62045495566-nf7dp1ife3i57v9gqg514bsiu3peroq8.apps.googleusercontent.com";
+// const FACEBOOK_CLIENT_ID = "879616965840226";
+// let auth2 = null;
 
 export default {
   data: () => ({
