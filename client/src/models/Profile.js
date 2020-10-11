@@ -6,7 +6,6 @@ export default {
         myFetch('/profile')
             .then(x=> { 
                 this.State = x;
-                console.log(x);
             });
     },
     async editProfile(age, height, weight, description) {

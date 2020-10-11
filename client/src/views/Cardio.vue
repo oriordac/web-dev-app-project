@@ -87,6 +87,7 @@ export default {
         calories: 0,
         hours: "",
         minutes: "",
+        seconds: "",
         //Inform user that POST submission was successful
         Submitted: false
     }),
@@ -121,14 +122,15 @@ export default {
             let startminute = d.getMinutes() - this.minutes;
             return `${starthour}:${startminute} - ${date} ${month}`;
         },
-        setTime(hours, minutes) {
+        setTime(hours, minutes, seconds) {
             this.hours = hours;
             this.minutes = minutes;
+            this.seconds = seconds;
         },
         async addExercise() {
             try {
                 let date = this.shortDateBuilder();
-                let time = `${this.hours}:${this.minutes}`;
+                let time = `${this.hours}:${this.minutes}:${this.seconds}`;
                 await Cardio.add(date, this.type, time, this.calories);
             } catch(error) {
                 this.error = error

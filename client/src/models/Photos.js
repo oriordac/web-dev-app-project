@@ -7,7 +7,6 @@ export default {
         myFetch("/")
             .then(x=> { 
                 this.State = x;
-                console.log(x);
             });
     }
 

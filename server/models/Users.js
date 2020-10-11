@@ -12,7 +12,6 @@ const Users = [
 ];
 
 function getOrCreate(response){
-    console.log(response.data);
     let user = Users.find(x => x.Email == response.data.email);
     //look at this later for signin and login
     if(!user){

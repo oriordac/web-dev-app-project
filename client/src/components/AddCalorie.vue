@@ -3,35 +3,11 @@
     <div class="modal-background"></div>
     <div class="modal-content">
         <div class="box">
-            
-            <!--<div class="field">
-            <label class="label">Name</label>
-            <div class="control">
-                <input class="input" type="text" placeholder="Apple" v-model="newFoodName">
-            </div>
-            <p class="help">Enter the name of food/drink</p>
-            </div> -->
-
-            <!--<p class="content"><b>Selected:</b> {{ selected }}</p>
-            <b-field label="Find a JS framework">
-                <b-autocomplete
-                    rounded
-                    v-model="name"
-                    :data="filteredDataArray"
-                    placeholder="Search Food"
-                    icon="magnify"
-                    clearable
-                    @typing="filter"
-                    @select="option => selected = option">
-                    <template slot="empty">No results found</template>
-                </b-autocomplete>
-            </b-field> -->
-
         <p class="content"><b>Selected:</b> {{ selected }}</p>
-
         <b-field label="Find common foods">
             <b-autocomplete
                 :data="data"
+                v-model="newFoodName"
                 placeholder="Apple"
                 field="title"
                 :loading="isFetching"
@@ -105,16 +81,6 @@ export default {
         selected: null,
         isFetching: false
     }),
-    computed: {
-        filteredDataArray() {
-            return this.data.filter((option) => {
-                return option
-                    .toString()
-                    .toLowerCase()
-                    .indexOf(this.name.toLowerCase()) >= 0
-            })
-        }
-    },
     created() {
         Calories.Init()
     },
@@ -127,7 +93,6 @@ export default {
             this.isFetching = true
             Calories.filter(name)
                 .then(x =>  {
-                    console.log(x);
                     this.data = [x];
                     this.isFetching = false;
                 })

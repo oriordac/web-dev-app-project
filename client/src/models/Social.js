@@ -6,7 +6,6 @@ export default {
         myFetch('/social')
             .then(x=> { 
                 this.State = {...x, Social: x.Social.map(r => ({...r, showComments: false}) )}
-                console.log(x);
             });
     },
     //POST request to add a new post to Posts array

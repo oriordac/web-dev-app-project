@@ -6,9 +6,7 @@ const router = express.Router();
 
 //Testing to see if tokens carries over after login
 router.use(function(req, res, next) {
-    console.log({ userId: req.userId })
     req.currentuser = profile.getUser(req.userId)
-    console.log({ currentUserId: req.currentuser })
     next();
 });
 

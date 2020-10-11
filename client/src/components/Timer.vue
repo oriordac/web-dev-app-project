@@ -76,7 +76,7 @@ export default {
             }
         },
         sendTime() {
-            this.$emit('send-time', this.hours, this.minutes);
+            this.$emit('send-time', this.hours, this.minutes, this.seconds);
         }
     },
 

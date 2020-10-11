@@ -101,7 +101,6 @@ const Exercises = [
 
 function editProfile(userid, newAge, newHeight, newWeight, newDescription) {
     const user = Profile.find(x=> x.UserId == userid);
-    console.log(user);
     user.Age = newAge;
     user.Height = newHeight;
     user.Weight = newWeight;

@@ -6,7 +6,6 @@ export default {
         myFetch('/liquid')
             .then(x=> { 
                 this.State = x;
-                console.log(x);
             });
     },
     //These POST requests have no body, but the myfetch must be told so by {} as the second parameter

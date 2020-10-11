@@ -6,7 +6,6 @@ export default {
         myFetch('/routines')
             .then(x=> { 
                 this.State = {...x, Routines: x.Routines.map(r => ({...r, isOpen: false }) )};
-                console.log(x);
             });
     },
     //POST request to add a new routine to State.Routines

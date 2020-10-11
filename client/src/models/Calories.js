@@ -6,7 +6,6 @@ export default {
         myFetch('/calories')
             .then(x=> { 
                 this.State = {...x};
-                console.log(x);
             });
     },
     //GET request for Final

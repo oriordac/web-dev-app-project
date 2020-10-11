@@ -1,5 +1,5 @@
 <template>
-    <div class="workout notification">
+    <div class="workout notification box">
     <h1 class="title has-text-centered">Exercise Log</h1>
 
     <label class="label">Workout</label>

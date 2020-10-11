@@ -7,7 +7,6 @@ const router = express.Router();
 router.use(function(req, res, next) {
     //the req.currentuser will get the "right" user from the array if the UserId are out of order
     req.currentuser = liquid.getUser(req.userId)
-    console.log({BearerToken: req.userId, CurrentUser : req.currentuser})
     next();
 });
 

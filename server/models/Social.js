@@ -118,7 +118,6 @@ function likedThePost(userid, index) {
     const fan = profile.Profile.find(x=> x.UserId == userid);
     //see if the current user liked the post
     const bool = post.findIndex(x => x.UserId == fan.UserId);
-    //console.log(bool);
     //if bool is negative, then the user has not liked the post
     if(bool >= 0) {
         return true;
