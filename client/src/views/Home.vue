@@ -19,9 +19,12 @@
               <div class="notification content">
                   <h1 class="title">Welcome | Wilkommen</h1>
                   <p>
-                      Consider becoming a member of <em>Bewegen</em> - a fitness app with emphasis on local hiking trails.
-                      Standard features include a calorie and water-intake tracker, workout routines, 
-                      and a weather tracker to ensure pleasant hikes in the mountains.
+                      This site was a class project for Web Server Programming taught by Rabbi Moshe Plotkin during the Spring 2020 semester.
+                      The front-end was designed with Vue CLI as the JS framework and Bulma as a CSS framework.
+                      Node.js and Express were used for the back-end.
+                      Unfortunetly, due to the Spring 2020 sester being cut short, we did not have time to implement a MangoDB to perserve changes;
+                      hence, all the sample users are hard-coded and any changes will be lost upon the window closing.
+                      Once the current semester and my campus job settles down, the focus will be on implementing MangoDB and allowing new users to register.
                   </p>
                   <a href="/about" class="button is-info">Learn More</a>
               </div>
