@@ -14,6 +14,9 @@ A user can update personal information and goals accordingly; a table of recent 
 The exercise routine pages have preset exercises to choose from, but admins can add/delete routines.
 The Open WeatherAPI was used for users to check the weather, and components consisting of timers are available to track progress between sets or resting intervals.
 A social media page resembling Twitter's design interface was implemented allowing users to post and comment on each other's post.
+
+Since the semester was interrupted by COVID-19, we did not have time to implement a MongoDB.
+That will be the obvious next step to preserve changes across profiles and allow new users to register.
 	
 ## Technologies
 Project is created with:
